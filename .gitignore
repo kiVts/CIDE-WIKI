@@ -1,0 +1,16 @@
+*
+
+!.gitignore
+!wiki/
+!wiki/**
+!example mod/
+!example mod/**
+
+/build.gradle
+/settings.gradle
+settings.gradle
+
+/.gradle/
+/build/
+example mod/.gradle/
+example mod/build/

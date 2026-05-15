@@ -1,0 +1,62 @@
+plugins {
+    id "net.neoforged.moddev" version "2.0.141"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    maven { url = "https://maven.squiddev.cc/" }
+    maven { url = "https://api.modrinth.com/maven" }
+}
+
+neoForge {
+    version = project.neoforge_version
+
+    mods {
+        pcinfo {
+            sourceSet sourceSets.main
+        }
+    }
+
+    runs {
+        server {
+            server()
+            gameDirectory = file("run/server")
+            programArgument "--nogui"
+        }
+    }
+}
+
+dependencies {
+    // CC:Tweaked — full dep so we can compile against its API
+    implementation "cc.tweaked:cc-tweaked-${project.minecraft_version}-forge:${project.cc_tweaked_version}"
+
+    // No CIDE compile dependency needed — integration uses reflection at runtime.
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "neoforge_version", project.neoforge_version
+    filteringCharset "UTF-8"
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand "version": project.version,
+            "minecraft_version": project.minecraft_version,
+            "neoforge_version": project.neoforge_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}

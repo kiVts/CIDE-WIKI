@@ -1,0 +1,37 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+    modId = "pcinfo"
+    version = "${version}"
+    displayName = "PC Info"
+    description = "Adds a pcinfo Lua API to CC:Tweaked computers. Integrates with CIDE for autocomplete and wiki support."
+
+[[dependencies.pcinfo]]
+    modId = "neoforge"
+    type = "required"
+    versionRange = "[${neoforge_version},)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.pcinfo]]
+    modId = "minecraft"
+    type = "required"
+    versionRange = "[${minecraft_version},)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.pcinfo]]
+    modId = "computercraft"
+    type = "required"
+    versionRange = "[1.114.2,)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.pcinfo]]
+    modId = "cide"
+    type = "optional"
+    versionRange = "[0.4.0,)"
+    ordering = "AFTER"
+    side = "BOTH"

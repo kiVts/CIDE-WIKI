@@ -1,0 +1,360 @@
+{
+    "colors": [
+        "combine",
+        "subtract",
+        "test",
+        "packRGB",
+        "unpackRGB",
+        "rgb8",
+        "toBlit",
+        "fromBlit"
+    ],
+    "commands": [
+        "__call",
+        "__tostring",
+        "__index",
+        "exec",
+        "execAsync",
+        "list",
+        "getBlockPosition",
+        "getBlockInfos",
+        "getBlockInfo",
+        "getEntities"
+    ],
+    "disk": [
+        "isPresent",
+        "getLabel",
+        "setLabel",
+        "hasData",
+        "getMountPath",
+        "hasAudio",
+        "getAudioTitle",
+        "playAudio",
+        "stopAudio",
+        "eject",
+        "getID"
+    ],
+    "fs": [
+        "complete",
+        "find",
+        "isDriveRoot",
+        "list",
+        "combine",
+        "getName",
+        "getDir",
+        "getSize",
+        "exists",
+        "isDir",
+        "isReadOnly",
+        "makeDir",
+        "move",
+        "copy",
+        "delete",
+        "open",
+        "getDrive",
+        "getFreeSpace",
+        "getCapacity",
+        "attributes"
+    ],
+    "gps": [
+        "locate",
+        "CHANNEL_GPS"
+    ],
+    "help": [
+        "path",
+        "setPath",
+        "lookup",
+        "topics",
+        "completeTopic"
+    ],
+    "http": [
+        "get",
+        "post",
+        "request",
+        "checkURL",
+        "websocketAsync",
+        "websocket"
+    ],
+    "io": [
+        "close",
+        "flush",
+        "input",
+        "lines",
+        "open",
+        "output",
+        "read",
+        "type",
+        "write"
+    ],
+    "keys": [
+        "getName"
+    ],
+    "paintutils": [
+        "parseImage",
+        "loadImage",
+        "drawPixel",
+        "drawLine",
+        "drawBox",
+        "drawFilledBox",
+        "drawImage"
+    ],
+    "parallel": [
+        "waitForAny",
+        "waitForAll"
+    ],
+    "peripheral": [
+        "getNames",
+        "isPresent",
+        "getType",
+        "hasType",
+        "getMethods",
+        "getName",
+        "call",
+        "wrap",
+        "find"
+    ],
+    "rednet": [
+        "open",
+        "close",
+        "isOpen",
+        "send",
+        "broadcast",
+        "receive",
+        "host",
+        "unhost",
+        "lookup",
+        "run",
+        "CHANNEL_BROADCAST",
+        "CHANNEL_REPEAT",
+        "MAX_ID_CHANNELS"
+    ],
+    "settings": [
+        "define",
+        "undefine",
+        "set",
+        "get",
+        "getDetails",
+        "unset",
+        "clear",
+        "getNames",
+        "load",
+        "save"
+    ],
+    "textutils": [
+        "slowWrite",
+        "slowPrint",
+        "formatTime",
+        "pagedPrint",
+        "tabulate",
+        "pagedTabulate",
+        "serialize",
+        "unserialize",
+        "serializeJSON",
+        "urlEncode",
+        "complete"
+    ],
+    "vector": [
+        "new"
+    ],
+    "window": [
+        "create"
+    ],
+    "os": [
+        "queueEvent",
+        "startTimer",
+        "cancelTimer",
+        "setAlarm",
+        "cancelAlarm",
+        "shutdown",
+        "reboot",
+        "getComputerID",
+        "computerID",
+        "getComputerLabel",
+        "computerLabel",
+        "setComputerLabel",
+        "clock",
+        "time",
+        "day",
+        "epoch",
+        "date"
+    ],
+    "rs": [
+        "getSides"
+    ],
+    "term": [
+        "nativePaletteColour",
+        "nativePaletteColor"
+    ],
+    "command": [
+        "getCommand",
+        "setCommand",
+        "runCommand"
+    ],
+    "drive": [
+        "isDiskPresent",
+        "getDiskLabel",
+        "setDiskLabel",
+        "hasData",
+        "getMountPath",
+        "hasAudio",
+        "getAudioTitle",
+        "playAudio",
+        "stopAudio",
+        "ejectDisk",
+        "getDiskID"
+    ],
+    "modem": [
+        "open",
+        "isOpen",
+        "close",
+        "closeAll",
+        "transmit",
+        "isWireless"
+    ],
+    "monitor": [
+        "setTextScale",
+        "getTextScale"
+    ],
+    "printer": [
+        "write",
+        "getCursorPos",
+        "setCursorPos",
+        "getPageSize",
+        "newPage",
+        "endPage",
+        "setPageTitle",
+        "getInkLevel",
+        "getPaperLevel"
+    ],
+    "speaker": [
+        "playNote",
+        "playSound",
+        "playAudio",
+        "stop"
+    ],
+    "pocket": [
+        "equipBack",
+        "unequipBack"
+    ],
+    "turtle": [
+        "forward",
+        "back",
+        "up",
+        "down",
+        "turnLeft",
+        "turnRight",
+        "dig",
+        "digUp",
+        "digDown",
+        "place",
+        "placeUp",
+        "placeDown",
+        "drop",
+        "dropUp",
+        "dropDown",
+        "select",
+        "getItemCount",
+        "getItemSpace",
+        "detect",
+        "detectUp",
+        "detectDown",
+        "compare",
+        "compareUp",
+        "compareDown",
+        "attack",
+        "attackUp",
+        "attackDown",
+        "suck",
+        "suckUp",
+        "suckDown",
+        "getFuelLevel",
+        "refuel",
+        "compareTo",
+        "transferTo",
+        "getSelectedSlot",
+        "getFuelLimit",
+        "equipLeft",
+        "equipRight",
+        "getEquippedLeft",
+        "getEquippedRight",
+        "inspect",
+        "inspectUp",
+        "inspectDown",
+        "getItemDetail"
+    ],
+    "workbench": [
+        "craft"
+    ],
+    "math": [
+        "abs",
+        "ceil",
+        "cos",
+        "deg",
+        "exp",
+        "floor",
+        "fmod",
+        "huge",
+        "ldexp",
+        "log",
+        "max",
+        "min",
+        "modf",
+        "pi",
+        "pow",
+        "rad",
+        "random",
+        "randomseed",
+        "sin",
+        "sqrt",
+        "tan"
+    ],
+    "string": [
+        "byte",
+        "char",
+        "dump",
+        "find",
+        "format",
+        "gmatch",
+        "gsub",
+        "len",
+        "lower",
+        "match",
+        "rep",
+        "reverse",
+        "sub",
+        "upper"
+    ],
+    "table": [
+        "concat",
+        "insert",
+        "maxn",
+        "move",
+        "pack",
+        "remove",
+        "sort",
+        "unpack"
+    ],
+    "coroutine": [
+        "create",
+        "isyieldable",
+        "resume",
+        "running",
+        "status",
+        "wrap",
+        "yield"
+    ],
+    "bit32": [
+        "arshift",
+        "band",
+        "bnot",
+        "bor",
+        "btest",
+        "bxor",
+        "extract",
+        "lshift",
+        "replace",
+        "rshift",
+        "lrotate",
+        "rrotate"
+    ]
+}
