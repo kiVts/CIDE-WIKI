@@ -1,4 +1,2142 @@
 {
+    "peripheral/command": {
+        "title": "command",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "This peripheral allows you to interact with command blocks.",
+            "Command blocks are only wrapped as peripherals if the enable_command_block option is true within the config.",
+            "This API is *not* the same as the [module!commands] API, which is exposed on command computers. @source projects/common/src/main/java/dan200/computercraft/shared/peripheral/commandblock/CommandBlockPeripheral.java:23 @module[kind=peripheral] command"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "command.getCommand()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the command this command block will run."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "command.setCommand(command)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the command block's command."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "command.runCommand()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Execute the command block once."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/commands": {
+        "title": "commands",
+        "titleColor": "#FFE2E8F4",
+        "entries": [
+            {
+                "signature": "commands.exec(command)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Execute a specific command. varies from command to command. ``lua commands.exec(\"setblock ~ ~1 ~ minecraft:stone\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "commands.execAsync(command)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Asynchronously execute a command. Unlike [exec], this will immediately return, instead of waiting for the command to execute. This allows you to run multiple commands at the same time. When this command has finished executing, it will queue a task_complete event containing the result of executing this command (what [exec] would return). ``lua commands.execAsync(\"setblock ~ ~1 ~ minecraft:stone\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "commands.list()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "List all available commands which the computer has permission to execute."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "commands.getBlockPosition()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the position of the current command computer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "commands.getBlockInfos(minX, minY, minZ, maxX, maxY, maxZ, dimension)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get information about a range of blocks. This returns the same information as [getBlockInfo], just for multiple blocks at once. Blocks are traversed by ascending y level, followed by z and x - the returned table may be indexed using x + z*width + y*width*depth + 1. ``lua Get a 3x3x3 cube around the computer local x, y, z = commands.getBlockPosition() local min_x, min_y, min_z, max_x, max_y, max_z = x - 1, y - 1, z - 1, x + 1, y + 1, z + 1 local blocks = commands.getBlockInfos(min_x, min_y, min_z, max_x, max_y, max_z) Then loop over all blocks and print them out. local width, height, depth = max_x - min_x + 1, max_y - min_y + 1, max_z - min_z + 1 for x = min_x, max_x do for y = min_y, max_y do for z = min_z, max_z do print((\"%d, %d %d => %s\"):format(x, y, z, blocks[(x - min_x) + (z - min_z) * width + (y - min_y) * width * depth + 1].name)) end end end ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "commands.getBlockInfo(x, y, z, dimension)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get some basic information about a block. The returned table contains the the same information as listed in [block_details]. If there is a block entity for that block, its NBT will also be returned."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "commands.getEntities(selector)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get all entities matching the given selector. ``lua for _, entity in ipairs(commands.getEntities(\"@e[distance=..10]\")) do print(entity.displayName) end `` @p or @a."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/computer": {
+        "title": "computer",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "A computer or turtle wrapped as a peripheral.",
+            "This allows for basic interaction with adjacent computers. Computers wrapped as peripherals will have the type computer while turtles will be turtle. @source projects/common/src/main/java/dan200/computercraft/shared/computer/blocks/ComputerPeripheral.java:20 @module[kind=peripheral] computer"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "computer.turnOn()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Turn the other computer on."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "computer.shutdown()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Shutdown the other computer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "computer.reboot()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Reboot or turn on the other computer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "computer.getID()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the other computer's ID."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "computer.isOn()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if the other computer is on."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "computer.getLabel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the other computer's label."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/drive": {
+        "title": "drive",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Disk drives are a peripheral which allow you to read and write to floppy disks and other \"mountable media\" (such as computers or turtles). They also allow you to play records.",
+            "When a disk drive attaches some mount (such as a floppy disk or computer), it attaches a folder called disk, disk2, etc... to the root directory of the computer. This folder can be used to interact with the files on that disk.",
+            "When a disk is inserted, a disk event is fired, with the side peripheral is on. Likewise, when the disk is detached, a disk_eject event is fired."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "drive.isDiskPresent()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns whether a disk is currently inserted in the drive."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.getDiskLabel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the label of the disk in the drive if available."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.setDiskLabel(label)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sets or clears the label for a disk. If no label or [nil] is passed, the label will be cleared. If the inserted disk's label can't be changed (for example, a record), an error will be thrown."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.hasData()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns whether a disk with data is inserted."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.getMountPath()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the mount path for the inserted disk."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.hasAudio()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns whether a disk with audio is inserted."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.getAudioTitle()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the title of the inserted audio disk."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.playAudio()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Plays the audio in the inserted disk, if available."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.stopAudio()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Stops any audio that may be playing."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.ejectDisk()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Ejects any disk that may be in the drive."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "drive.getDiskID()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the ID of the disk inserted in the drive."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "generic_peripheral/energy_storage": {
+        "title": "energy_storage",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Methods for interacting with blocks which store energy.",
+            "This works with energy storage blocks, as well as generators and machines which consume energy.",
+            "> [!NOTE] > Due to limitations with Forge's energy API, it is not possible to measure throughput (i.e. FE used/generated per > tick)."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "energy_storage.getEnergy()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the energy of this block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "energy_storage.getEnergyCapacity()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the maximum amount of energy this block can store."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "generic_peripheral/fluid_storage": {
+        "title": "fluid_storage",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Methods for interacting with tanks and other fluid storage blocks."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "fluid_storage.tanks()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get all \"tanks\" in this fluid storage. Each tank either contains some amount of fluid or is empty. Tanks with fluids inside will return some basic information about the fluid, including its name and amount. The returned table is sparse, and so empty tanks will be nil - it is recommended to loop over using [pairs] rather than [ipairs]."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fluid_storage.pushFluid(toName, limit, fluidName)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move a fluid from one fluid container to another connected one. This allows you to pull fluid in the current fluid container to another container *on the same wired network*. Both containers must attached to wired modems which are connected via a cable. and displayed by the wired modem."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fluid_storage.pullFluid(fromName, limit, fluidName)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move a fluid from a connected fluid container into this one. This allows you to pull fluid in the current fluid container from another container *on the same wired network*. Both containers must be attached to wired modems which are connected via a cable. and displayed by the wired modem."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/fs": {
+        "title": "fs",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Interact with the computer's files and filesystem, allowing you to manipulate files, directories and paths. This includes:",
+            "\u00e2\u20ac\u00a2 **Reading and writing files:** Call [open] to obtain a file \"handle\", which can be used to read from or",
+            "write to a file.",
+            "\u00e2\u20ac\u00a2 **Path manipulation:** [combine], [getName] and [getDir] allow you to manipulate file",
+            "paths, joining them together or extracting components.",
+            "\u00e2\u20ac\u00a2 **Querying paths:** For instance, checking if a file exists, or whether it's a directory. See [getSize],",
+            "[exists], [isDir], [isReadOnly] and [attributes].",
+            "\u00e2\u20ac\u00a2 **File and directory manipulation:** For instance, moving or copying files. See [makeDir], [move],",
+            "[copy] and [delete].",
+            "> [!NOTE] > All functions in the API work on absolute paths, and do not take the current directory into account. > You can use [shell.resolve] to convert a relative path into an absolute one.",
+            "Mounts",
+            "While a computer can only have one hard drive and filesystem, other filesystems may be \"mounted\" inside it. For instance, the drive peripheral mounts its disk's contents at \"disk/\", \"disk1/\", etc...",
+            "You can see which mount a path belongs to with the [getDrive] function. This returns \"hdd\" for the computer's main filesystem (\"/\"), \"rom\" for the rom (\"rom/\").",
+            "Most filesystems have a limited capacity, operations which would cause that capacity to be reached (such as writing an incredibly large file) will fail. You can see a mount's capacity with [getCapacity] and the remaining space with [getFreeSpace]. @source projects/core/src/main/java/dan200/computercraft/core/apis/FSAPI.java:57 @module[kind=module] fs"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "fs.list(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns a list of files in a directory. ``lua local files = fs.list(\"/rom/\") for i = 1, #files do print(files[i]) end ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.combine()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Combines several parts of a path into one full path, adding separators as needed. ``lua fs.combine(\"/rom/programs\", \"../apis\", \"parallel.lua\") => rom/apis/parallel.lua ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.getName(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the file name portion of a path. ``lua fs.getName(\"rom/startup.lua\") => startup.lua ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.getDir(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the parent directory portion of a path. ``lua fs.getDir(\"rom/startup.lua\") => rom ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.getSize(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the size of the specified file."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.exists(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns whether the specified path exists."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.isDir(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns whether the specified path is a directory."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.isReadOnly(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns whether a path is read-only."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.makeDir(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Creates a directory, and any missing parents, at the specified path."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.move(path, dest)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Moves a file or directory from one path to another. Any parent directories are created as needed."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.copy(path, dest)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Copies a file or directory to a new path. Any parent directories are created as needed."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.delete(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Deletes a file or directory. If the path points to a directory, all of the enclosed files and subdirectories are also deleted."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.open(path, mode)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Opens a file for reading or writing at a path. The mode string can be any of the following: - **\"r\"**: Read mode. - **\"w\"**: Write mode. - **\"a\"**: Append mode. - **\"r+\"**: Update mode (allows reading and writing), all data is preserved. - **\"w+\"**: Update mode, all data is erased. The mode may also have a \"b\" at the end, which opens the file in \"binary mode\". This changes [fs.ReadHandle.read] and [fs.WriteHandle.write] to read/write single bytes as numbers rather than strings. ``lua local file = fs.open(\"/rom/help/intro.txt\", \"r\") local contents = file.readAll() file.close() print(contents) ` `lua local file = fs.open(\"/rom/motd.txt\", \"r\") local lines = {} while true do local line = file.readLine() If line is nil then we've reached the end of the file and should stop if not line then break end lines[#lines + 1] = line end file.close() print(lines[math.random(#lines)]) -- Pick a random line and print it. ` `lua local file = fs.open(\"out.txt\", \"w\") file.write(\"Just testing some code\") file.close() -- Remember to call close, otherwise changes may not be written! `` UTF-8."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.getDrive(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the name of the mount that the specified path is located on. ``lua print(\"/: \" .. fs.getDrive(\"/\")) print(\"/rom/: \" .. fs.getDrive(\"rom\")) ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.getFreeSpace(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the amount of free space available on the drive the path is located on."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.getCapacity(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the capacity of the drive the path is located on. treasure disks."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.attributes(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get attributes about a specific file or folder. The returned attributes table contains information about the size of the file, whether it is a directory, when it was created and last modified, and whether it is read only. The creation and modification times are given as the number of milliseconds since the UNIX epoch. This may be given to [module!os.date] in order to convert it to more usable form."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "fs.complete(sPath, sLocation, bIncludeFiles, bIncludeDirs)",
+                "signatureColor": "#FF4FC1FF"
+            },
+            {
+                "signature": "fs.find(pattern)",
+                "signatureColor": "#FF4FC1FF"
+            },
+            {
+                "signature": "fs.isDriveRoot(path)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns true if a path is mounted to the parent filesystem. The root filesystem \"/\" is considered a mount, along with disk folders and the rom folder."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "generic_peripheral/inventory": {
+        "title": "inventory",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Methods for interacting with inventories."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "inventory.size()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the size of this inventory."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "inventory.list()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "List all items in this inventory. This returns a table, with an entry for each slot. Each item in the inventory is represented by a table containing some basic information. More information can be fetched with [getItemDetail]. The table contains the item name, the count and an a (potentially nil) hash of the item's nbt. This NBT data doesn't contain anything useful, but allows you to distinguish identical items. The returned table is sparse, and so empty slots will be nil - it is recommended to loop over using [pairs] rather than [ipairs]. ``lua local chest = peripheral.find(\"minecraft:chest\") for slot, item in pairs(chest.list()) do print((\"%d x %s in slot %d\"):format(item.count, item.name, slot)) end ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "inventory.getItemDetail(slot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get detailed information about an item. ``lua local chest = peripheral.find(\"minecraft:chest\") local item = chest.getItemDetail(1) if not item then print(\"No item\") return end print((\"%s (%s)\"):format(item.displayName, item.name)) print((\"Count: %d/%d\"):format(item.count, item.maxCount)) if item.damage then print((\"Damage: %d/%d\"):format(item.damage, item.maxDamage)) end ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "inventory.getItemLimit(slot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the maximum number of items which can be stored in this slot. Typically this will be limited to 64 items. However, some inventories (such as barrels or caches) can store hundreds or thousands of items in one slot. ``lua local chest = peripheral.find(\"minecraft:chest\") local total = 0 for i = 1, chest.size() do total = total + chest.getItemLimit(i) end print(total) ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "inventory.pushItems(toName, fromSlot, limit, toSlot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Push items from one inventory to another connected one. This allows you to push an item in an inventory to another inventory *on the same wired network*. Both inventories must attached to wired modems which are connected via a cable. ``lua local chest_a = peripheral.wrap(\"minecraft:chest_0\") local chest_b = peripheral.wrap(\"minecraft:chest_1\") chest_a.pushItems(peripheral.getName(chest_b), 1) `` and displayed by the wired modem."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "inventory.pullItems(fromName, fromSlot, limit, toSlot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Pull items from a connected inventory into this one. This allows you to transfer items between inventories *on the same wired network*. Both this and the source inventory must attached to wired modems which are connected via a cable. ``lua local chest_a = peripheral.wrap(\"minecraft:chest_0\") local chest_b = peripheral.wrap(\"minecraft:chest_1\") chest_a.pullItems(peripheral.getName(chest_b), 1) `` and displayed by the wired modem."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/modem": {
+        "title": "modem",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Modems allow you to send messages between computers over long distances.",
+            "> [!TIP] > Modems provide a fairly basic set of methods, which makes them very flexible but often hard to work with. The > [rednet] API is built on top of modems, and provides a more user-friendly interface.",
+            "Sending and receiving messages",
+            "Modems operate on a series of channels, a bit like frequencies on a radio. Any modem can send a message on a particular channel, but only those which have opened the channel and are \"listening in\" can receive messages.",
+            "Channels are represented as an integer between 0 and 65535 inclusive. These channels don't have any defined meaning, though some APIs or programs will assign a meaning to them. For instance, the [gps] module sends all its messages on channel 65534 ([gps.CHANNEL_GPS]), while [rednet] uses channels equal to the computer's ID.",
+            "\u00e2\u20ac\u00a2 Sending messages is done with the [transmit] message.",
+            "\u00e2\u20ac\u00a2 Receiving messages is done by listening to the [modem_message] event.",
+            "Types of modem",
+            "CC: Tweaked comes with three kinds of modem, with different capabilities.",
+            "\u00e2\u20ac\u00a2 **Wireless modems:** Wireless modems can send messages to any other wireless modem. They can be placed next to a",
+            "computer, or equipped as a pocket computer or turtle upgrade.",
+            "Wireless modems have a limited range, only sending messages to modems within 64 blocks. This range increases linearly once the modem is above y=96, to a maximum of 384 at world height.",
+            "\u00e2\u20ac\u00a2 **Ender modems:** These are upgraded versions of normal wireless modems. They do not have a distance",
+            "limit, and can send messages between dimensions.",
+            "\u00e2\u20ac\u00a2 **Wired modems:** These send messages to other any other wired modems connected to the same network",
+            "(using *Networking Cable*). They also can be used to attach additional peripherals to a computer."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "modem.open(channel)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Open a channel on a modem. A channel must be open in order to receive messages. Modems can have up to 128 channels open at one time."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.isOpen(channel)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if a channel is open."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.close(channel)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Close an open channel, meaning it will no longer receive messages."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.closeAll()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Close all open channels."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.transmit(channel, replyChannel, payload)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sends a modem message on a certain channel. Modems listening on the channel will queue a modem_message event on adjacent computers. > [!NOTE] > The channel does not need be open to send a message. ``lua local modem = peripheral.find(\"modem\") or error(\"No modem attached\", 0) modem.transmit(15, 43, \"Hello, world!\") ` channel` or entirely different. The channel must have been opened on the sending computer in order to receive the replies. tables. Other types (like functions), as well as metatables, will not be transmitted."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.isWireless()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if this is a wired or wireless modem. Some methods (namely those dealing with wired networks and remote peripherals) are only available on wired modems."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.getNamesRemote()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "List all remote peripherals on the wired network. If this computer is attached to the network, it _will not_ be included in this list. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.isPresentRemote(name)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if a peripheral is available on this wired network. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.getTypeRemote(name)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the type of a peripheral is available on this wired network. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.hasTypeRemote(name, type)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check a peripheral is of a particular type. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.getMethodsRemote(name)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get all available methods for the remote peripheral with the given name. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.callRemote()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Call a method on a peripheral on this wired network. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "modem.getNameLocal()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the network name of the current computer, if the modem is on. This may be used by other computers on the network to wrap this computer as a peripheral. > [!NOTE] > This function only appears on wired modems. Check [isWireless] returns false before calling it."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/monitor": {
+        "title": "monitor",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Monitors are a block which act as a terminal, displaying information on one side. This allows them to be read and interacted with in-world without opening a GUI.",
+            "Monitors act as terminal redirects and so expose the same methods, as well as several additional ones, which are documented below.",
+            "If the monitor is resized (by adding new blocks to the monitor, or by calling [setTextScale]), then a [monitor_resize] event will be queued.",
+            "Like computers, monitors come in both normal (no colour) and advanced (colour) varieties. Advanced monitors be right clicked, which will trigger a [monitor_touch] event."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "monitor.setTextScale(scaleArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the scale of this monitor. A larger scale will result in the monitor having a lower resolution, but display text much larger."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getTextScale()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the monitor's current text scale."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.write(textA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Write text at the current cursor position, moving the cursor to the end of the text. Unlike functions like write and print, this does not wrap the text - it simply copies the text to the current terminal line."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.scroll(y)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move all positions up (or down) by y pixels. Every pixel in the terminal will be replaced by the line y pixels below it. If y is negative, it will copy pixels from above instead."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getCursorPos()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the position of the cursor."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setCursorPos(x, y)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the position of the cursor. terminal writes will begin from this position."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getCursorBlink()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Checks if the cursor is currently blinking."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setCursorBlink(blink)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sets whether the cursor should be visible (and blinking) at the current cursor position."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getSize()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the size of the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.clear()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Clears the terminal, filling it with the current background colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.clearLine()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Clears the line the cursor is currently on, filling it with the current background colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getTextColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getTextColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setTextColour(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setTextColor(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getBackgroundColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getBackgroundColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setBackgroundColour(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setBackgroundColor(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.isColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if this terminal supports colour. Terminals which do not support colour will still allow writing coloured text/backgrounds, but it will be displayed in greyscale."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.isColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if this terminal supports colour. Terminals which do not support colour will still allow writing coloured text/backgrounds, but it will be displayed in greyscale."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.blit(text, textColour, backgroundColour)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Writes text to the terminal with the specific foreground and background colours. As with [write], the text will be written at the current cursor location, with the cursor moving to the end of the text. textColour and backgroundColour must both be strings the same length as text. All characters represent a single hexadecimal digit, which is converted to one of CC's colours. For instance, \"a\" corresponds to purple. ``lua term.blit(\"Hello, world!\",\"01234456789ab\",\"0000000000000\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setPaletteColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the palette for a specific colour. ComputerCraft's palette system allows you to change how a specific colour should be displayed. For instance, you can make [colors.red] *more red* by setting its palette to #FF0000. This does now allow you to draw more colours - you are still limited to 16 on the screen at one time - but you can change *which* colours are used. 0xFF0000 corresponds to the colour #FF0000. ``lua term.setPaletteColour(colors.red, 0xFF0000) term.setTextColour(colors.red) print(\"Hello, world!\") ` `lua term.setPaletteColour(colors.red, 1, 0, 0) term.setTextColour(colors.red) print(\"Hello, world!\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.setPaletteColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the palette for a specific colour. ComputerCraft's palette system allows you to change how a specific colour should be displayed. For instance, you can make [colors.red] *more red* by setting its palette to #FF0000. This does now allow you to draw more colours - you are still limited to 16 on the screen at one time - but you can change *which* colours are used. 0xFF0000 corresponds to the colour #FF0000. ``lua term.setPaletteColour(colors.red, 0xFF0000) term.setTextColour(colors.red) print(\"Hello, world!\") ` `lua term.setPaletteColour(colors.red, 1, 0, 0) term.setTextColour(colors.red) print(\"Hello, world!\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getPaletteColour(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current palette for a specific colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "monitor.getPaletteColor(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current palette for a specific colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/os": {
+        "title": "os",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "The [module!os] API allows interacting with the current computer. @source projects/core/src/main/java/dan200/computercraft/core/apis/OSAPI.java:30 @module[kind=module] os"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "os.queueEvent()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Adds an event to the event queue. This event can later be pulled with os.pullEvent. tables. Other types (like functions), as well as metatables, will not be preserved."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.startTimer(time)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Starts a timer that will run for the specified number of seconds. Once the timer fires, a [timer] event will be added to the queue with the ID returned from this function as the first parameter. As with sleep, the time will automatically be rounded up to the nearest multiple of 0.05 seconds, as it waits for a fixed amount of world ticks. event, or cancel the timer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.cancelTimer(token)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Cancels a timer previously started with [startTimer]. This will stop the timer from firing."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.setAlarm(time)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sets an alarm that will fire at the specified in-game time. When it fires, an alarm event will be added to the event queue with the ID returned from this function as the first parameter. alarm event, or cancel the alarm."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.cancelAlarm(token)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Cancels an alarm previously started with setAlarm. This will stop the alarm from firing."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.shutdown()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Shuts down the computer immediately."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.reboot()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Reboots the computer immediately."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.getComputerID()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the ID of the computer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.computerID()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the ID of the computer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.getComputerLabel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the label of the computer, or [nil] if none is set."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.computerLabel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the label of the computer, or [nil] if none is set."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.setComputerLabel(label)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the label of this computer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.clock()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the number of seconds that the computer has been running."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.time()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the current time depending on the string passed in. This will always be in the range [0.0, 24.0). * If called with ingame, the current world time will be returned. This is the default if nothing is passed. * If called with utc, returns the hour of the day in UTC time. * If called with local, returns the hour of the day in the timezone the server is located in. This function can also be called with a table returned from [date], which will convert the date fields into a UNIX timestamp (number of seconds since 1 January 1970). ``lua textutils.formatTime(os.time()) ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.day(locale)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the day depending on the locale specified. * If called with ingame, returns the number of days since the world was created. This is the default. * If called with utc, returns the number of days since 1 January 1970 in the UTC timezone. * If called with local, returns the number of days since 1 January 1970 in the server's local timezone."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.epoch(locale)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the number of milliseconds since an epoch depending on the locale. * If called with ingame, returns the number of *in-game* milliseconds since the world was created. This is the default. * If called with utc, returns the number of milliseconds since 1 January 1970 in the UTC timezone. * If called with local, returns the number of milliseconds since 1 January 1970 in the server's local timezone. > [!INFO] > The ingame time zone assumes that one Minecraft day consists of 86,400,000 > milliseconds. Since one in-game day is much faster than a real day (20 minutes), this > will change quicker than real time - one real second is equal to 72000 in-game > milliseconds. If you wish to convert this value to real time, divide by 72000; to > convert to ticks (where a day is 24000 ticks), divide by 3600. ``lua Dividing by 1000 converts it from milliseconds to seconds. local time = os.epoch(\"local\") / 1000 local time_table = os.date(\"*t\", time) print(textutils.serialize(time_table)) ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.date(formatA, timeA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns a date string (or table) using a specified format string and optional time to format. The format string takes the same formats as C's strftime function. The format string can also be prefixed with an exclamation mark (!) to use UTC time instead of the server's local timezone. If the format is exactly \"*t\" (or \"!*t\" ), a table representation of the timestamp will be returned instead. This table has fields for the year, month, day, hour, minute, second, day of the week, day of the year, and whether Daylight Savings Time is in effect. This table can be converted back to a timestamp with [time]. ``lua os.date(\"%A %d %B %Y\") -- See the reference above! ` `lua os.date(\"!*t\", 1242534247) [=[ { Date year = 2009, month = 5, day = 17, yday = 137, wday = 1, Time hour = 4, min = 24, sec = 7, isdst = false, } ]=] ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.version()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the current ComputerCraft version."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.pullEventRaw(sFilter)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Waits for an event without allowing terminate events to abort the program."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.pullEvent(sFilter)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Waits for an event."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.run(tEnv, sPath, ...)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Runs a program with a custom environment."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.loadAPI(sPath)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Loads a Lua API from a file into the global environment."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.unloadAPI(sName)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Unloads a previously loaded API."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "os.sleep(nTime)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Pauses execution for the given number of seconds."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/pocket": {
+        "title": "pocket",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Control the current pocket computer, adding or removing upgrades.",
+            "This API is only available on pocket computers. As such, you may use its presence to determine what kind of computer you are using:",
+            "``lua if pocket then print(\"On a pocket computer\") else print(\"On something else\") end ``"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "pocket.equipBack()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Search the player's inventory for another upgrade, replacing the existing one with that item if found. This inventory search starts from the player's currently selected slot, allowing you to prioritise upgrades."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "pocket.unequipBack()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Remove the pocket computer's current upgrade."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/printer": {
+        "title": "printer",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "The printer peripheral allows printing text onto pages. These pages can then be crafted together into printed pages or books.",
+            "Printers require ink (one of the coloured dyes) and paper in order to function. Once loaded, a new page can be started with [newPage]. Then the printer can be used similarly to a normal terminal; text can be written, and the cursor moved. Once all text has been printed, [endPage] should be called to finally print the page."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "printer.write(textA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Writes text to the current page."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.getCursorPos()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the current position of the cursor on the page."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.setCursorPos(x, y)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sets the position of the cursor on the page."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.getPageSize()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the size of the current page."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.newPage()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Starts printing a new page."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.endPage()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Finalizes printing of the current page and outputs it to the tray."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.setPageTitle(title)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sets the title of the current page."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.getInkLevel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the amount of ink left in the printer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "printer.getPaperLevel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the amount of paper left in the printer."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/redstone": {
+        "title": "redstone",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Get and set redstone signals adjacent to this computer.",
+            "The [module!redstone] library exposes three \"types\" of redstone control:",
+            "\u00e2\u20ac\u00a2 Binary input/output ([setOutput]/[getInput]): These simply check if a redstone wire has any input or",
+            "output. A signal strength of 1 and 15 are treated the same.",
+            "\u00e2\u20ac\u00a2 Analogue input/output ([setAnalogOutput]/[getAnalogInput]): These work with the actual signal",
+            "strength of the redstone wired, from 0 to 15.",
+            "\u00e2\u20ac\u00a2 Bundled cables ([setBundledOutput]/[getBundledInput]): These interact with \"bundled\" cables, such",
+            "as those from Project:Red. These allow you to send 16 separate on/off signals. Each channel corresponds to a colour, with the first being [colors.white] and the last [colors.black].",
+            "Whenever a redstone input changes, a [event!redstone] event will be fired. This may be used instead of repeativly polling.",
+            "This module may also be referred to as rs. For example, one may call rs.getSides() instead of [getSides]. @usage Toggle the redstone signal above the computer every 0.5 seconds.",
+            "``lua while true do redstone.setOutput(\"top\", not redstone.getOutput(\"top\")) sleep(0.5) end ` @usage Mimic a redstone comparator in subtraction mode.",
+            "`lua while true do local rear = rs.getAnalogueInput(\"back\") local sides = math.max(rs.getAnalogueInput(\"left\"), rs.getAnalogueInput(\"right\")) rs.setAnalogueOutput(\"front\", math.max(rear - sides, 0))",
+            "os.pullEvent(\"redstone\") -- Wait for a change to inputs. end ``",
+            "[comparator]: https://minecraft.wiki/w/Redstone_Comparator#Subtract_signal_strength \"Redstone Comparator on the Minecraft wiki.\" @source projects/core/src/main/java/dan200/computercraft/core/apis/RedstoneAPI.java:56 @module[kind=module] redstone"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "redstone.getSides()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns a table containing the six sides of the computer. Namely, \"top\", \"bottom\", \"left\", \"right\", \"front\" and \"back\"."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.setOutput(side, on)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Turn the redstone signal of a specific side on or off."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current redstone output of a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current redstone input of a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.setAnalogOutput(side, value)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the redstone signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.setAnalogueOutput(side, value)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the redstone signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getAnalogOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone output signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getAnalogueOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone output signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getAnalogInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone input signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getAnalogueInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone input signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.setBundledOutput(side, output)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the bundled cable output for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getBundledOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the bundled cable output for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.getBundledInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the bundled cable input for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone.testBundledInput(side, mask)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if a specific combination of colours are on for the given side. ``lua print(redstone.testBundledInput(\"top\", colors.combine(colors.white, colors.black))) ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/redstone_relay": {
+        "title": "redstone_relay",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "The redstone relay is a peripheral that allows reading and outputting redstone signals. While this is not very useful on its own (as computers have the same functionality built-in), this can be used with wired modems to interact with multiple redstone signals from the same computer.",
+            "The peripheral provides largely identical methods to a computer's built-in [module!redstone] API, allowing setting signals on all six sides of the block (\"top\", \"bottom\", \"left\", \"right\", \"front\" and \"back\")."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "redstone_relay.setOutput(side, on)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Turn the redstone signal of a specific side on or off."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current redstone output of a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current redstone input of a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.setAnalogOutput(side, value)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the redstone signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.setAnalogueOutput(side, value)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the redstone signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getAnalogOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone output signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getAnalogueOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone output signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getAnalogInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone input signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getAnalogueInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the redstone input signal strength for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.setBundledOutput(side, output)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the bundled cable output for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getBundledOutput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the bundled cable output for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.getBundledInput(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the bundled cable input for a specific side."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "redstone_relay.testBundledInput(side, mask)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if a specific combination of colours are on for the given side. ``lua print(redstone.testBundledInput(\"top\", colors.combine(colors.white, colors.black))) ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "peripheral/speaker": {
+        "title": "speaker",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "The speaker peripheral allows your computer to play notes and other sounds.",
+            "The speaker can play three kinds of sound, in increasing orders of complexity:",
+            "\u00e2\u20ac\u00a2 [playNote] allows you to play noteblock note.",
+            "\u00e2\u20ac\u00a2 [playSound] plays any Minecraft sound, such as block sounds or mob noises.",
+            "\u00e2\u20ac\u00a2 [playAudio] can play arbitrary audio."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "speaker.playNote(instrumentA, volumeA, pitchA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Plays a note block note through the speaker. This takes the name of a note to play, as well as optionally the volume and pitch to play the note at. The pitch argument uses semitones as the unit. This directly maps to the number of clicks on a note block. For reference, 0, 12, and 24 map to F#, and 6 and 18 map to C. A maximum of 8 notes can be played in a single tick. If this limit is hit, this function will return [false]. ### Valid instruments The speaker supports all of Minecraft's noteblock instruments. These are: \"harp\", \"basedrum\", \"snare\", \"hat\", \"bass\", \"flute\", \"bell\", \"guitar\", \"chime\", \"xylophone\", \"iron_xylophone\", \"cow_bell\", \"didgeridoo\", \"bit\", \"banjo\" and \"pling\"."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "speaker.playSound(name, volumeA, pitchA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Plays a Minecraft sound through the speaker. This takes the name of a vanilla Minecraft or modded sound, such as \"minecraft:block.note_block.harp\", as well as an optional volume and pitch. Only one sound can be played at once. This function will return [false] if another sound was started this tick, or if some audio is still playing. ``lua {data-peripheral=speaker} local speaker = peripheral.find(\"speaker\") speaker.playSound(\"entity.creeper.primed\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "speaker.playAudio()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attempt to stream some audio data to the speaker. This accepts a list of audio samples as amplitudes between -128 and 127. These are stored in an internal buffer and played back at 48kHz. If this buffer is full, this function will return [false]. Programs should wait for a [speaker_audio_empty] event before trying to play audio again. The speaker only buffers a single call to [playAudio] at once. This means if you try to play a small number of samples, you'll have a lot of stutter. You should try to play as many samples in one call as possible (up to 128\u00d71024), as this reduces the chances of audio stuttering or halting, especially when the server or computer is lagging. While the speaker accepts 8-bit PCM audio, the audio stream is re-encoded before being played. This means that the supplied samples may not be played out exactly. [speaker_audio] provides a more complete guide to using speakers. given to [playAudio]. ``lua {data-peripheral=speaker} local dfpwm = require(\"cc.audio.dfpwm\") local speaker = peripheral.find(\"speaker\") local decoder = dfpwm.make_decoder() for chunk in io.lines(\"data/example.dfpwm\", 16 * 1024) do local buffer = decoder(chunk) while not speaker.playAudio(buffer) do os.pullEvent(\"speaker_audio_empty\") end end `` the speaker."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "speaker.stop()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Stop all audio being played by this speaker. This clears any audio that [playAudio] had queued and stops the latest sound played by [playSound]."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/term": {
+        "title": "term",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Interact with a computer's terminal or monitors, writing text and drawing ASCII graphics.",
+            "Writing to the terminal The simplest operation one can perform on a terminal is displaying (or writing) some text. This can be performed with the [term.write] method.",
+            "``lua term.write(\"Hello, world!\") `",
+            "When you write text, this advances the cursor, so the next call to [term.write] will write text immediately after the previous one.",
+            "`lua term.write(\"Hello, world!\") term.write(\"Some more text\") `",
+            "[term.getCursorPos] and [term.setCursorPos] can be used to manually change the cursor's position.",
+            "`lua term.clear()",
+            "term.setCursorPos(1, 1) -- The first column of line 1 term.write(\"First line\")",
+            "term.setCursorPos(20, 2) -- The 20th column of line 2 term.write(\"Second line\") `",
+            "[term.write] is a relatively basic and low-level function, and does not handle more advanced features such as line breaks or word wrapping. If you just want to display text to the screen, you probably want to use [print] or [write] instead.",
+            "Colours So far we've been writing text in black and white. However, advanced computers are also capable of displaying text in a variety of colours, with the [term.setTextColour] and [term.setBackgroundColour] functions.",
+            "`lua print(\"This text is white\") term.setTextColour(colours.green) print(\"This text is green\") `",
+            "These functions accept any of the constants from the [colors] API. Combinations of colours may be accepted, but will only display a single colour (typically following the behaviour of [colors.toBlit]).",
+            "The [paintutils] API provides several helpful functions for displaying graphics using [term.setBackgroundColour`]. @source projects/core/src/main/java/dan200/computercraft/core/apis/TermAPI.java:67 @module[kind=module] term"
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "term.nativePaletteColour(colour)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the default palette value for a colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.nativePaletteColor(colour)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the default palette value for a colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.write(textA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Write text at the current cursor position, moving the cursor to the end of the text. Unlike functions like write and print, this does not wrap the text - it simply copies the text to the current terminal line."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.scroll(y)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move all positions up (or down) by y pixels. Every pixel in the terminal will be replaced by the line y pixels below it. If y is negative, it will copy pixels from above instead."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getCursorPos()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the position of the cursor."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setCursorPos(x, y)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the position of the cursor. terminal writes will begin from this position."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getCursorBlink()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Checks if the cursor is currently blinking."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setCursorBlink(blink)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Sets whether the cursor should be visible (and blinking) at the current cursor position."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getSize()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the size of the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.clear()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Clears the terminal, filling it with the current background colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.clearLine()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Clears the line the cursor is currently on, filling it with the current background colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getTextColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getTextColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setTextColour(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setTextColor(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the colour that new text will be written as."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getBackgroundColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getBackgroundColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Return the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setBackgroundColour(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setBackgroundColor(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the current background colour. This is used when writing text and clearing the terminal."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.isColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if this terminal supports colour. Terminals which do not support colour will still allow writing coloured text/backgrounds, but it will be displayed in greyscale."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.isColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Determine if this terminal supports colour. Terminals which do not support colour will still allow writing coloured text/backgrounds, but it will be displayed in greyscale."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.blit(text, textColour, backgroundColour)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Writes text to the terminal with the specific foreground and background colours. As with [write], the text will be written at the current cursor location, with the cursor moving to the end of the text. textColour and backgroundColour must both be strings the same length as text. All characters represent a single hexadecimal digit, which is converted to one of CC's colours. For instance, \"a\" corresponds to purple. ``lua term.blit(\"Hello, world!\",\"01234456789ab\",\"0000000000000\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setPaletteColour()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the palette for a specific colour. ComputerCraft's palette system allows you to change how a specific colour should be displayed. For instance, you can make [colors.red] *more red* by setting its palette to #FF0000. This does now allow you to draw more colours - you are still limited to 16 on the screen at one time - but you can change *which* colours are used. 0xFF0000 corresponds to the colour #FF0000. ``lua term.setPaletteColour(colors.red, 0xFF0000) term.setTextColour(colors.red) print(\"Hello, world!\") ` `lua term.setPaletteColour(colors.red, 1, 0, 0) term.setTextColour(colors.red) print(\"Hello, world!\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.setPaletteColor()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Set the palette for a specific colour. ComputerCraft's palette system allows you to change how a specific colour should be displayed. For instance, you can make [colors.red] *more red* by setting its palette to #FF0000. This does now allow you to draw more colours - you are still limited to 16 on the screen at one time - but you can change *which* colours are used. 0xFF0000 corresponds to the colour #FF0000. ``lua term.setPaletteColour(colors.red, 0xFF0000) term.setTextColour(colors.red) print(\"Hello, world!\") ` `lua term.setPaletteColour(colors.red, 1, 0, 0) term.setTextColour(colors.red) print(\"Hello, world!\") ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getPaletteColour(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current palette for a specific colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.getPaletteColor(colourArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the current palette for a specific colour."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.redirect(target)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Redirects terminal output to a monitor, a [`window`], or any other custom terminal object. Once the redirect is performed, any calls to a \"term\" function - or to a function that makes use of a term function, as [`print`] - will instead operate with the new terminal object. A \"terminal object\" is simply a table that contains functions with the same names - and general features - as those found in the term table. For example, a wrapped monitor is suitable. The redirect can be undone by pointing back to the previous terminal object (which this function returns whenever you switch). [`term.current`]. Redirect to a monitor on the right of the computer. term.redirect(peripheral.wrap(\"right\"))"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.current",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Returns the current terminal object of the computer. Create a new [`window`] which draws to the current redirect target. window.create(term.current(), 1, 1, 10, 10)"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "term.native",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the native terminal object of the current computer. It is recommended you do not use this function unless you absolutely have to. In a multitasked environment, [`term.native`] will _not_ be the current terminal object, and so drawing may interfere with other programs."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
+    "module/turtle": {
+        "title": "turtle",
+        "titleColor": "#FFE2E8F4",
+        "summary": [
+            "Turtles are a robotic device, which can break and place blocks, attack mobs, and move about the world. They have an internal inventory of 16 slots, allowing them to store blocks they have broken or would like to place.",
+            "Movement",
+            "Turtles are capable of moving through the world. As turtles are blocks themselves, they are confined to Minecraft's grid, moving a single block at a time.",
+            "[turtle.forward] and [turtle.back] move the turtle in the direction it is facing, while [turtle.up] and [turtle.down] move it up and down (as one might expect!). In order to move left or right, you first need to turn the turtle using [turtle.turnLeft]/[turtle.turnRight] and then move forward or backwards.",
+            "> [!INFO] > The name \"turtle\" comes from [Turtle graphics], which originated from the Logo programming language. Here you'd > move a turtle with various commands like \"move 10\" and \"turn left\", much like ComputerCraft's turtles!",
+            "Moving a turtle (though not turning it) consumes *fuel*. If a turtle does not have any fuel, it won't move, and the movement functions will return [false]. If your turtle isn't going anywhere, the first thing to check is if you've fuelled your turtle.",
+            "> Handling errors > Many turtle functions can fail in various ways. For instance, a turtle cannot move forward if there's already a > block there. Instead of erroring, functions which can fail either return [true] if they succeed, or [false] and > some error message if they fail. > > Unexpected failures can often lead to strange behaviour. It's often a good idea to check the return values of these > functions, or wrap them in [assert] (for instance, use assert(turtle.forward()) rather than turtle.forward()), > so the program doesn't misbehave.",
+            "Turtle upgrades",
+            "While a normal turtle can move about the world and place blocks, its functionality is limited. Thankfully, turtles can be upgraded with upgrades. Turtles have two upgrade slots, one on the left and right sides. Upgrades can be equipped by crafting a turtle with the upgrade, or calling the [turtle.equipLeft]/[turtle.equipRight] functions.",
+            "By default, any diamond tool may be used as an upgrade (though more may be added with [datapacks]). The diamond pickaxe may be used to break blocks (with [turtle.dig]), while the sword can attack entities ([turtle.attack]). Other tools have more niche use-cases, for instance hoes can til dirt.",
+            "Some peripherals (namely speakers and Ender and Wireless modems) can also be equipped as upgrades. These are then accessible by accessing the \"left\" or \"right\" peripheral."
+        ],
+        "summaryColor": "#FFADB8CC",
+        "entries": [
+            {
+                "signature": "turtle.forward()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move the turtle forward one block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.back()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move the turtle backwards one block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.up()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move the turtle up one block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.down()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move the turtle down one block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.turnLeft()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Rotate the turtle 90 degrees to the left."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.turnRight()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Rotate the turtle 90 degrees to the right."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.dig(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attempt to break the block in front of the turtle. This requires a turtle tool capable of breaking the block. Diamond pickaxes (mining turtles) can break any vanilla block breakable in survival mode, but other tools (such as axes) are more limited."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.digUp(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attempt to break the block above the turtle. See [dig] for full details."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.digDown(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attempt to break the block below the turtle. See [dig] for full details."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.place()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Place a block or item into the world in front of the turtle. \"Placing\" an item allows it to interact with blocks and entities in front of the turtle. For instance, buckets can pick up and place down fluids, and wheat can be used to breed cows. However, you cannot use [place] to perform arbitrary block interactions, such as clicking buttons or flipping levers."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.placeUp()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Place a block or item into the world above the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.placeDown()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Place a block or item into the world below the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.drop(count)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Drop the currently selected stack into the inventory in front of the turtle, or as an item into the world if there is no inventory."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.dropUp(count)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Drop the currently selected stack into the inventory above the turtle, or as an item into the world if there is no inventory."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.dropDown(count)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Drop the currently selected stack into the inventory below the turtle, or as an item into the world if there is no inventory."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.select(slot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Change the currently selected slot. The selected slot is determines what slot actions like [drop] or [getItemCount] act on."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getItemCount(slot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the number of items in the given slot."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getItemSpace(slot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the remaining number of items which may be stored in this stack. For instance, if a slot contains 13 blocks of dirt, it has room for another 51."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.detect()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if there is a solid block in front of the turtle. In this case, solid refers to any non-air or liquid block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.detectUp()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if there is a solid block above the turtle. In this case, solid refers to any non-air or liquid block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.detectDown()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if there is a solid block below the turtle. In this case, solid refers to any non-air or liquid block."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.compare()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if the block in front of the turtle is equal to the item in the currently selected slot."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.compareUp()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if the block above the turtle is equal to the item in the currently selected slot."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.compareDown()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Check if the block below the turtle is equal to the item in the currently selected slot."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.attack(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attack the entity in front of the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.attackUp(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attack the entity above the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.attackDown(side)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Attack the entity below the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.suck(count)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Suck an item from the inventory in front of the turtle, or from an item floating in the world. This will pull items into the first acceptable slot, starting at the currently selected one."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.suckUp(count)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Suck an item from the inventory above the turtle, or from an item floating in the world."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.suckDown(count)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Suck an item from the inventory below the turtle, or from an item floating in the world."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getFuelLevel()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the maximum amount of fuel this turtle currently holds."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.refuel(countA)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Refuel this turtle. While most actions a turtle can perform (such as digging or placing blocks) are free, moving consumes fuel from the turtle's internal buffer. If a turtle has no fuel, it will not move. [refuel] refuels the turtle, consuming fuel items (such as coal or lava buckets) from the currently selected slot and converting them into energy. This finishes once the turtle is fully refuelled or all items have been consumed. ``lua local level = turtle.getFuelLevel() if level == \"unlimited\" then error(\"Turtle does not need fuel\", 0) end local ok, err = turtle.refuel() if ok then local new_level = turtle.getFuelLevel() print((\"Refuelled %d, current level is %d\"):format(new_level - level, new_level)) else printError(err) end ` `lua local is_fuel, reason = turtle.refuel(0) if not is_fuel then printError(reason) end ``"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.compareTo(slot)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Compare the item in the currently selected slot to the item in another slot."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.transferTo(slotArg, countArg)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Move an item from the selected slot to another one."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getSelectedSlot()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the currently selected slot."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getFuelLimit()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the maximum amount of fuel this turtle can hold. By default, normal turtles have a limit of 20,000 and advanced turtles of 100,000."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.equipLeft()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Equip (or unequip) an item on the left side of this turtle. This finds the item in the currently selected slot and attempts to equip it to the left side of the turtle. The previous upgrade is removed and placed into the turtle's inventory. If there is no item in the slot, the previous upgrade is removed, but no new one is equipped."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.equipRight()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Equip (or unequip) an item on the right side of this turtle. This finds the item in the currently selected slot and attempts to equip it to the right side of the turtle. The previous upgrade is removed and placed into the turtle's inventory. If there is no item in the slot, the previous upgrade is removed, but no new one is equipped."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getEquippedLeft()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the upgrade currently equipped on the left of the turtle. This returns information about the currently equipped item."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getEquippedRight()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get the upgrade currently equipped on the right of the turtle. This returns information about the currently equipped item."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.inspect()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get information about the block in front of the turtle. local has_block, data = turtle.inspect() if has_block then print(textutils.serialise(data)) { name = \"minecraft:oak_log\", state = { axis = \"x\" }, tags = { [\"minecraft:logs\"] = true, ... }, } else print(\"No block in front of the turtle\") end ```"
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.inspectUp()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get information about the block above the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.inspectDown()",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get information about the block below the turtle."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            },
+            {
+                "signature": "turtle.getItemDetail(slot, detailed)",
+                "signatureColor": "#FF4FC1FF",
+                "description": [
+                    "Get information about the items in the given slot. ``lua print(textutils.serialise(turtle.getItemDetail())) => { name = \"minecraft:dirt\", count = 13, } `` more information about the item at the cost of taking longer to run."
+                ],
+                "descriptionColor": "#FFADB8CC"
+            }
+        ]
+    },
     "module/colors": {
         "title": "colors",
         "titleColor": "#FFE2E8F4",
@@ -163,164 +2301,6 @@
             }
         ]
     },
-    "module/fs": {
-        "title": "fs",
-        "titleColor": "#FFE2E8F4",
-        "entries": [
-            {
-                "signature": "fs.complete(sPath, sLocation, bIncludeFiles, bIncludeDirs)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "fs.find(pattern)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "fs.isDriveRoot(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns true if a path is mounted to the parent filesystem. The root filesystem \"/\" is considered a mount, along with disk folders and the rom folder."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.list(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns a list of files in a directory. @cc.usage List all files under /rom/ local files = fs.list(\"/rom/\") for i = 1, #files do print(files[i]) end"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.combine(...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Combines several parts of a path into one full path, adding separators as needed. @cc.tparam string path The first part of the path. For example, a parent directory path. @cc.tparam string ... Additional parts of the path to combine. @cc.changed 1.95.0 Now supports multiple arguments. @cc.usage Combine several file paths together fs.combine(\"/rom/programs\", \"../apis\", \"parallel.lua\") -- => rom/apis/parallel.lua"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.getName(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the file name portion of a path. @cc.since 1.2 @cc.usage Get the file name of rom/startup.lua fs.getName(\"rom/startup.lua\") -- => startup.lua"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.getDir(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the parent directory portion of a path. @cc.since 1.63 @cc.usage Get the directory name of rom/startup.lua fs.getDir(\"rom/startup.lua\") -- => rom"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.getSize(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the size of the specified file. @cc.since 1.3"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.exists(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns whether the specified path exists."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.isDir(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns whether the specified path is a directory."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.isReadOnly(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns whether a path is read-only."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.makeDir(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Creates a directory, and any missing parents, at the specified path."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.move(path, dest)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Moves a file or directory from one path to another. Any parent directories are created as needed."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.copy(path, dest)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Copies a file or directory to a new path. Any parent directories are created as needed."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.delete(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Deletes a file or directory. If the path points to a directory, all of the enclosed files and subdirectories are also deleted."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.open(path, mode)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Opens a file for reading or writing at a path. The mode string can be any of the following: \"r\": Read mode. \"w\": Write mode. \"a\": Append mode. \"r+\": Update mode (allows reading and writing), all data is preserved. \"w+\": Update mode, all data is erased. The mode may also have a \"b\" at the end, which opens the file in \"binary mode\". This changes ReadHandle#read(Optional) and WriteHandle#write(IArguments) to read/write single bytes as numbers rather than strings. @cc.treturn [1] table A file handle object for the file. @cc.treturn [2] nil If the file does not exist, or cannot be opened. @cc.treturn string|nil A message explaining why the file cannot be opened. @cc.usage Read the contents of a file. local file = fs.open(\"/rom/help/intro.txt\", \"r\") local contents = file.readAll() file.close() print(contents) @cc.usage Open a file and read all lines into a table. [io.lines] offers an alternative way to do this. local file = fs.open(\"/rom/motd.txt\", \"r\") local lines = { while true do local line = file.readLine() -- If line is nil then we've reached the end of the file and should stop if not line then break end lines[#lines + 1] = line end file.close() print(lines[math.random(#lines)]) -- Pick a random line and print it. } @cc.usage Open a file and write some text to it. You can run edit out.txt to see the written text. local file = fs.open(\"out.txt\", \"w\") file.write(\"Just testing some code\") file.close() -- Remember to call close, otherwise changes may not be written! @cc.changed 1.109.0 Add support for update modes (r+ and w+). @cc.changed 1.109.0 Opening a file in non-binary mode now uses the raw bytes of the file rather than encoding to UTF-8."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.getDrive(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the name of the mount that the specified path is located on. @cc.treturn string|nil The name of the drive that the file is on; e.g. hdd for local files, or rom for ROM files. @cc.usage Print the drives of a couple of mounts: print(\"/: \" .. fs.getDrive(\"/\")) print(\"/rom/: \" .. fs.getDrive(\"rom\"))"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.getFreeSpace(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the amount of free space available on the drive the path is located on. @cc.treturn number|\"unlimited\" The amount of free space available, in bytes, or \"unlimited\". @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.getCapacity(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the capacity of the drive the path is located on. @cc.treturn number|nil This drive's capacity. This will be nil for \"read-only\" drives, such as the ROM or treasure disks. @cc.since 1.87.0"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "fs.attributes(path)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get attributes about a specific file or folder. The returned attributes table contains information about the size of the file, whether it is a directory, when it was created and last modified, and whether it is read only. The creation and modification times are given as the number of milliseconds since the UNIX epoch. This may be given to OSAPI#date in order to convert it to more usable form. @cc.treturn { size = number, isDir = boolean, isReadOnly = boolean, created = number, modified = number } The resulting attributes. @cc.since 1.87.0 @cc.changed 1.91.0 Renamed modification field to modified. @cc.changed 1.95.2 Added isReadOnly to attributes."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
     "module/gps": {
         "title": "gps",
         "titleColor": "#FFE2E8F4",
@@ -427,18 +2407,6 @@
             },
             {
                 "signature": "http.websocket(url, headers)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "http.request(...)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "http.checkURL(address)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "http.websocket(...)",
                 "signatureColor": "#FF4FC1FF"
             }
         ]
@@ -668,26 +2636,6 @@
             {
                 "signature": "peripheral.find(ty, filter)",
                 "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "peripheral.isPresent(sideName)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "peripheral.getType(sideName)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "peripheral.hasType(sideName, type)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "peripheral.getMethods(sideName)",
-                "signatureColor": "#FF4FC1FF"
-            },
-            {
-                "signature": "peripheral.call(...)",
-                "signatureColor": "#FF4FC1FF"
             }
         ]
     },
@@ -867,52 +2815,6 @@
             }
         ]
     },
-    "module/term": {
-        "title": "term",
-        "titleColor": "#FFE2E8F4",
-        "entries": [
-            {
-                "signature": "term.redirect(target)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Redirects terminal output to a monitor, a [`window`], or any other custom terminal object. Once the redirect is performed, any calls to a \"term\" function - or to a function that makes use of a term function, as [`print`] - will instead operate with the new terminal object. A \"terminal object\" is simply a table that contains functions with the same names - and general features - as those found in the term table. For example, a wrapped monitor is suitable. The redirect can be undone by pointing back to the previous terminal object (which this function returns whenever you switch). [`term.current`]. Redirect to a monitor on the right of the computer. term.redirect(peripheral.wrap(\"right\"))"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "term.current",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the current terminal object of the computer. Create a new [`window`] which draws to the current redirect target. window.create(term.current(), 1, 1, 10, 10)"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "term.native",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the native terminal object of the current computer. It is recommended you do not use this function unless you absolutely have to. In a multitasked environment, [`term.native`] will _not_ be the current terminal object, and so drawing may interfere with other programs."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "term.nativePaletteColour(colour)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the default palette value for a colour. @cc.treturn number The red channel, will be between 0 and 1. @cc.treturn number The green channel, will be between 0 and 1. @cc.treturn number The blue channel, will be between 0 and 1. @cc.since 1.81.0"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "term.nativePaletteColor(colour)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the default palette value for a colour. @cc.treturn number The red channel, will be between 0 and 1. @cc.treturn number The green channel, will be between 0 and 1. @cc.treturn number The blue channel, will be between 0 and 1. @cc.since 1.81.0"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
     "module/textutils": {
         "title": "textutils",
         "titleColor": "#FFE2E8F4",
@@ -1019,1079 +2921,6 @@
         "entries": [
             {
                 "signature": "window.create(parent, nX, nY, nWidth, nHeight, bStartVisible)",
-                "signatureColor": "#FF4FC1FF"
-            }
-        ]
-    },
-    "module/os": {
-        "title": "os",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "The OSAPI API allows interacting with the current computer. @cc.module os"
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "os.queueEvent(name, ...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Adds an event to the event queue. This event can later be pulled with os.pullEvent. @cc.tparam string name The name of the event to queue. @cc.param ... The parameters of the event. These can be any primitive type (boolean, number, string) as well as tables. Other types (like functions), as well as metatables, will not be preserved. @cc.see os.pullEvent To pull the event queued"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.startTimer(time)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Starts a timer that will run for the specified number of seconds. Once the timer fires, a [timer] event will be added to the queue with the ID returned from this function as the first parameter. As with sleep, the time will automatically be rounded up to the nearest multiple of 0.05 seconds, as it waits for a fixed amount of world ticks. event, or #cancelTimer cancel the timer."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.cancelTimer(token)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Cancels a timer previously started with #startTimer(double). This will stop the timer from firing. @cc.since 1.6"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.setAlarm(time)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Sets an alarm that will fire at the specified #time(IArguments) in-game time. When it fires, an alarm event will be added to the event queue with the ID returned from this function as the first parameter. alarm event, or #cancelAlarm cancel the alarm. @cc.since 1.2"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.cancelAlarm(token)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Cancels an alarm previously started with setAlarm. This will stop the alarm from firing. @cc.since 1.6"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.shutdown()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Shuts down the computer immediately."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.reboot()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Reboots the computer immediately."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.getComputerID()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the ID of the computer."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.computerID()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the ID of the computer."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.getComputerLabel()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the label of the computer, or nil if none is set. @cc.treturn string|nil The label of the computer. @cc.since 1.3"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.computerLabel()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the label of the computer, or nil if none is set. @cc.treturn string|nil The label of the computer. @cc.since 1.3"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.setComputerLabel([label])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Set the label of this computer. @cc.since 1.3"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.clock()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the number of seconds that the computer has been running. @cc.since 1.2"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.time(...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the current time depending on the string passed in. This will always be in the range [0.0, 24.0). * If called with ingame, the current world time will be returned. This is the default if nothing is passed. * If called with utc, returns the hour of the day in UTC time. * If called with local, returns the hour of the day in the timezone the server is located in. This function can also be called with a table returned from #date, which will convert the date fields into a UNIX timestamp (number of seconds since 1 January 1970). @cc.tparam [opt] string|table locale The locale of the time, or a table filled by os.date(\"*t\") to decode. Defaults to ingame locale if not specified. @cc.see textutils.formatTime To convert times into a user-readable string. @cc.usage Print the current in-game time. textutils.formatTime(os.time()) @cc.since 1.2 @cc.changed 1.80pr1 Add support for getting the local and UTC time. @cc.changed 1.82.0 Arguments are now case insensitive. @cc.changed 1.83.0 #time(IArguments) now accepts table arguments and converts them to UNIX timestamps."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.day([locale])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the day depending on the locale specified. * If called with ingame, returns the number of days since the world was created. This is the default. * If called with utc, returns the number of days since 1 January 1970 in the UTC timezone. * If called with local, returns the number of days since 1 January 1970 in the server's local timezone. @cc.since 1.48 @cc.changed 1.82.0 Arguments are now case insensitive."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.epoch([locale])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the number of milliseconds since an epoch depending on the locale. * If called with ingame, returns the number of *in-game* milliseconds since the world was created. This is the default. * If called with utc, returns the number of milliseconds since 1 January 1970 in the UTC timezone. * If called with local, returns the number of milliseconds since 1 January 1970 in the server's local timezone. > [!INFO] > The ingame time zone assumes that one Minecraft day consists of 86,400,000 > milliseconds. Since one in-game day is much faster than a real day (20 minutes), this > will change quicker than real time - one real second is equal to 72000 in-game > milliseconds. If you wish to convert this value to real time, divide by 72000; to > convert to ticks (where a day is 24000 ticks), divide by 3600. @cc.since 1.80pr1 @cc.usage Get the current time and use #date to convert it to a table. -- Dividing by 1000 converts it from milliseconds to seconds. local time = os.epoch(\"local\") / 1000 local time_table = os.date(\"*t\", time) print(textutils.serialize(time_table))"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.date([formatA], [timeA])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns a date string (or table) using a specified format string and optional time to format. The format string takes the same formats as C's strftime function. The format string can also be prefixed with an exclamation mark (!) to use UTC time instead of the server's local timezone. If the format is exactly \"*t\" (or \"!*t\" ), a table representation of the timestamp will be returned instead. This table has fields for the year, month, day, hour, minute, second, day of the week, day of the year, and whether Daylight Savings Time is in effect. This table can be converted back to a timestamp with #time(IArguments). @cc.since 1.83.0 @cc.usage Print the current date in a user-friendly string. os.date(\"%A %d %B %Y\") -- See the reference above! @cc.usage Convert a timestamp to a table. os.date(\"!*t\", 1242534247) --[=[ { -- Date year = 2009, month = 5, day = 17, yday = 137, wday = 1, -- Time hour = 4, min = 24, sec = 7, isdst = false, ]=] }"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.version()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the current ComputerCraft version."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.pullEventRaw(sFilter)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Waits for an event without allowing terminate events to abort the program."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.pullEvent(sFilter)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Waits for an event."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.run(tEnv, sPath, ...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Runs a program with a custom environment."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.loadAPI(sPath)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Loads a Lua API from a file into the global environment."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.unloadAPI(sName)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Unloads a previously loaded API."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "os.sleep(nTime)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Pauses execution for the given number of seconds."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "module/rs": {
-        "title": "rs",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "Get and set redstone signals adjacent to this computer.",
-            "The RedstoneAPI library exposes three \"types\" of redstone control:",
-            "\u00e2\u20ac\u00a2 Binary input/output (setOutput/getInput): These simply check if a redstone wire has any input or",
-            "output. A signal strength of 1 and 15 are treated the same.",
-            "\u00e2\u20ac\u00a2 Analogue input/output (setAnalogOutput/getAnalogInput): These work with the actual signal",
-            "strength of the redstone wired, from 0 to 15.",
-            "\u00e2\u20ac\u00a2 Bundled cables (setBundledOutput/getBundledInput): These interact with \"bundled\" cables, such",
-            "as those from Project:Red. These allow you to send 16 separate on/off signals. Each channel corresponds to a colour, with the first being [colors.white] and the last [colors.black].",
-            "Whenever a redstone input changes, a [event!redstone] event will be fired. This may be used instead of repeativly polling.",
-            "This module may also be referred to as rs. For example, one may call rs.getSides() instead of getSides. @cc.usage Toggle the redstone signal above the computer every 0.5 seconds.",
-            "@cc.usage Mimic a redstone comparator in subtraction mode.",
-            "[comparator]: https://minecraft.wiki/w/Redstone_Comparator#Subtract_signal_strength \"Redstone Comparator on the Minecraft wiki.\" @cc.module redstone"
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "rs.getSides()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns a table containing the six sides of the computer. Namely, \"top\", \"bottom\", \"left\", \"right\", \"front\" and \"back\". @cc.since 1.2"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "module/commands": {
-        "title": "commands",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "@cc.module commands @cc.since 1.7"
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "commands.exec(command)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Execute a specific command. @cc.treturn boolean Whether the command executed successfully. @cc.treturn { string... } The output of this command, as a list of lines. @cc.treturn number|nil The number of \"affected\" objects, or nil if the command failed. The definition of this varies from command to command. @cc.changed 1.71 Added return value with command output. @cc.changed 1.85.0 Added return value with the number of affected objects. @cc.usage Set the block above the command computer to stone. commands.exec(\"setblock ~ ~1 ~ minecraft:stone\")"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "commands.execAsync(command)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Asynchronously execute a command. Unlike #exec, this will immediately return, instead of waiting for the command to execute. This allows you to run multiple commands at the same time. When this command has finished executing, it will queue a task_complete event containing the result of executing this command (what #exec would return). @cc.usage Asynchronously sets the block above the computer to stone. commands.execAsync(\"setblock ~ ~1 ~ minecraft:stone\") @cc.see parallel One may also use the parallel API to run multiple commands at once."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "commands.list(...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "List all available commands which the computer has permission to execute. @cc.tparam string ... The sub-command to complete."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "commands.getBlockPosition()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the position of the current command computer. @cc.treturn number This computer's x position. @cc.treturn number This computer's y position. @cc.treturn number This computer's z position. @cc.see gps.locate To get the position of a non-command computer."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "commands.getBlockInfos(minX, minY, minZ, maxX, maxY, maxZ, [dimension])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get information about a range of blocks. This returns the same information as [getBlockInfo], just for multiple blocks at once. Blocks are traversed by ascending y level, followed by z and x - the returned table may be indexed using x + z*width + y*width*depth + 1. @cc.since 1.76 @cc.changed 1.99 Added dimension argument. @cc.usage Print out all blocks in a cube around the computer. -- Get a 3x3x3 cube around the computer local x, y, z = commands.getBlockPosition() local min_x, min_y, min_z, max_x, max_y, max_z = x - 1, y - 1, z - 1, x + 1, y + 1, z + 1 local blocks = commands.getBlockInfos(min_x, min_y, min_z, max_x, max_y, max_z) -- Then loop over all blocks and print them out. local width, height, depth = max_x - min_x + 1, max_y - min_y + 1, max_z - min_z + 1 for x = min_x, max_x do for y = min_y, max_y do for z = min_z, max_z do print((\"%d, %d %d => %s\"):format(x, y, z, blocks[(x - min_x) + (z - min_z) * width + (y - min_y) * width * depth + 1].name)) end end end"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "commands.getBlockInfo(x, y, z, [dimension])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get some basic information about a block. The returned table contains the the same information as listed in [block_details]. If there is a block entity for that block, its NBT will also be returned. @cc.changed 1.76 Added block state info to return value @cc.changed 1.99 Added dimension argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "commands.getEntities(selector)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get all entities matching the given selector. @p or @a. @cc.since 1.118.0 @cc.usage Print the name of all entities within 10 blocks of the command computer. for _, entity in ipairs(commands.getEntities(\"@e[distance=..10]\")) do print(entity.displayName) end @cc.see entity_details"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/command": {
-        "title": "command",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "This peripheral allows you to interact with command blocks.",
-            "Command blocks are only wrapped as peripherals if the enable_command_block option is true within the config.",
-            "This API is not the same as the CommandAPI API, which is exposed on command computers. @cc.module command"
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "command.getCommand()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the command this command block will run."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "command.setCommand(command)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Set the command block's command."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "command.runCommand()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Execute the command block once. @cc.treturn boolean If the command completed successfully. @cc.treturn string|nil A failure message."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/drive": {
-        "title": "drive",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "Disk drives are a peripheral which allow you to read and write to floppy disks and other \"mountable media\" (such as computers or turtles). They also allow you to playAudio.",
-            "When a disk drive attaches some mount (such as a floppy disk or computer), it attaches a folder called disk, disk2, etc... to the root directory of the computer. This folder can be used to interact with the files on that disk.",
-            "When a disk is inserted, a disk event is fired, with the side peripheral is on. Likewise, when the disk is detached, a disk_eject event is fired."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "drive.isDiskPresent()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns whether a disk is currently inserted in the drive."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.getDiskLabel()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the label of the disk in the drive if available. @cc.treturn string|nil The label of the disk, or nil if either no disk is inserted or the disk doesn't have a label."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.setDiskLabel([label])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Sets or clears the label for a disk. If no label or nil is passed, the label will be cleared. If the inserted disk's label can't be changed (for example, a record), an error will be thrown."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.hasData()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns whether a disk with data is inserted."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.getMountPath()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the mount path for the inserted disk."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.hasAudio()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns whether a disk with audio is inserted."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.getAudioTitle()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the title of the inserted audio disk. @cc.treturn string|nil|false The title of the audio, false if no disk is inserted, or nil if the disk has no audio."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.playAudio()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Plays the audio in the inserted disk, if available."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.stopAudio()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Stops any audio that may be playing."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.ejectDisk()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Ejects any disk that may be in the drive."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "drive.getDiskID()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the ID of the disk inserted in the drive. @cc.treturn number|nil The ID of the disk in the drive, or nil if no disk with an ID is inserted. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/modem": {
-        "title": "modem",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "Modems allow you to send messages between computers over long distances.",
-            "> [!TIP] > Modems provide a fairly basic set of methods, which makes them very flexible but often hard to work with. The > [rednet] API is built on top of modems, and provides a more user-friendly interface.",
-            "Sending and receiving messages",
-            "Modems operate on a series of channels, a bit like frequencies on a radio. Any modem can send a message on a particular channel, but only those which have open the channel and are \"listening in\" can receive messages.",
-            "Channels are represented as an integer between 0 and 65535 inclusive. These channels don't have any defined meaning, though some APIs or programs will assign a meaning to them. For instance, the [gps] module sends all its messages on channel 65534 ([gps.CHANNEL_GPS]), while [rednet] uses channels equal to the computer's ID.",
-            "\u00e2\u20ac\u00a2 Sending messages is done with the transmit message.",
-            "\u00e2\u20ac\u00a2 Receiving messages is done by listening to the [modem_message] event.",
-            "Types of modem",
-            "CC: Tweaked comes with three kinds of modem, with different capabilities.",
-            "\u00e2\u20ac\u00a2 Wireless modems: Wireless modems can send messages to any other wireless modem. They can be placed next to a computer, or equipped as a pocket computer or turtle upgrade.  Wireless modems have a limited range, only sending messages to modems within 64 blocks. This range increases linearly once the modem is above y=96, to a maximum of 384 at world height.",
-            "\u00e2\u20ac\u00a2 Ender modems: These are upgraded versions of normal wireless modems. They do not have a distance limit, and can send messages between dimensions.",
-            "\u00e2\u20ac\u00a2 Wired modems: These send messages to other any other wired modems connected to the same network (using Networking Cable). They also can be used to attach additional peripherals to a computer."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "modem.open(channel)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Open a channel on a modem. A channel must be open in order to receive messages. Modems can have up to 128 channels open at one time."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "modem.isOpen(channel)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if a channel is open."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "modem.close(channel)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Close an open channel, meaning it will no longer receive messages."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "modem.closeAll()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Close all open channels."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "modem.transmit(channel, replyChannel, payload)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Sends a modem message on a certain channel. Modems listening on the channel will queue a modem_message event on adjacent computers. > [!NOTE] > The channel does not need be open to send a message. channel or entirely different. The channel must have been #open opened on the sending computer in order to receive the replies. tables. Other types (like functions), as well as metatables, will not be transmitted. @cc.usage Wrap a modem and a message on channel 15, requesting a response on channel 43. local modem = peripheral.find(\"modem\") or error(\"No modem attached\", 0) modem.transmit(15, 43, \"Hello, world!\")"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "modem.isWireless()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Determine if this is a wired or wireless modem. Some methods (namely those dealing with wired networks and remote peripherals) are only available on wired modems."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/monitor": {
-        "title": "monitor",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "Monitors are a block which act as a terminal, displaying information on one side. This allows them to be read and interacted with in-world without opening a GUI.",
-            "Monitors act as terminal redirects and so expose the same methods, as well as several additional ones, which are documented below.",
-            "If the monitor is resized (by adding new blocks to the monitor, or by calling setTextScale), then a [monitor_resize] event will be queued.",
-            "Like computers, monitors come in both normal (no colour) and advanced (colour) varieties. Advanced monitors be right clicked, which will trigger a [monitor_touch] event."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "monitor.setTextScale(scaleArg)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Set the scale of this monitor. A larger scale will result in the monitor having a lower resolution, but display text much larger."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "monitor.getTextScale()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the monitor's current text scale. @cc.since 1.81.0"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/printer": {
-        "title": "printer",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "The printer peripheral allows printing text onto pages. These pages can then be crafted together into printed pages or books.",
-            "Printers require ink (one of the coloured dyes) and paper in order to function. Once loaded, a new page can be started with newPage. Then the printer can be used similarly to a normal terminal; write, and setCursorPos. Once all text has been printed, endPage should be called to finally print the page."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "printer.write(textA)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Writes text to the current page."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.getCursorPos()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the current position of the cursor on the page. @cc.treturn number The X position of the cursor. @cc.treturn number The Y position of the cursor."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.setCursorPos(x, y)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Sets the position of the cursor on the page."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.getPageSize()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the size of the current page. @cc.treturn number The width of the page. @cc.treturn number The height of the page."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.newPage()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Starts printing a new page."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.endPage()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Finalizes printing of the current page and outputs it to the tray."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.setPageTitle([title])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Sets the title of the current page."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.getInkLevel()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the amount of ink left in the printer."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "printer.getPaperLevel()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Returns the amount of paper left in the printer."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/speaker": {
-        "title": "speaker",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "The speaker peripheral allows your computer to play notes and other sounds.",
-            "The speaker can play three kinds of sound, in increasing orders of complexity:",
-            "\u00e2\u20ac\u00a2 playNote allows you to play noteblock note.",
-            "\u00e2\u20ac\u00a2 playSound plays any Minecraft sound, such as block sounds or mob noises.",
-            "\u00e2\u20ac\u00a2 playAudio can play arbitrary audio."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "speaker.playNote(instrumentA, [volumeA], [pitchA])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Plays a note block note through the speaker. This takes the name of a note to play, as well as optionally the volume and pitch to play the note at. The pitch argument uses semitones as the unit. This directly maps to the number of clicks on a note block. For reference, 0, 12, and 24 map to F#, and 6 and 18 map to C. A maximum of 8 notes can be played in a single tick. If this limit is hit, this function will return false. ### Valid instruments The speaker supports all of Minecraft's noteblock instruments. These are: \"harp\", \"basedrum\", \"snare\", \"hat\", \"bass\", \"flute\", \"bell\", \"guitar\", \"chime\", \"xylophone\", \"iron_xylophone\", \"cow_bell\", \"didgeridoo\", \"bit\", \"banjo\" and \"pling\"."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "speaker.playSound(name, [volumeA], [pitchA])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Plays a Minecraft sound through the speaker. This takes the name of a vanilla Minecraft or modded sound, such as \"minecraft:block.note_block.harp\", as well as an optional volume and pitch. Only one sound can be played at once. This function will return false if another sound was started this tick, or if some #playAudio audio is still playing. @cc.usage Play a creeper hiss with the speaker. local speaker = peripheral.find(\"speaker\") speaker.playSound(\"entity.creeper.primed\")"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "speaker.playAudio(audio, [volume])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attempt to stream some audio data to the speaker. This accepts a list of audio samples as amplitudes between -128 and 127. These are stored in an internal buffer and played back at 48kHz. If this buffer is full, this function will return false. Programs should wait for a [speaker_audio_empty] event before trying to play audio again. The speaker only buffers a single call to #playAudio at once. This means if you try to play a small number of samples, you'll have a lot of stutter. You should try to play as many samples in one call as possible (up to 128\u00d71024), as this reduces the chances of audio stuttering or halting, especially when the server or computer is lagging. While the speaker accepts 8-bit PCM audio, the audio stream is re-encoded before being played. This means that the supplied samples may not be played out exactly. [speaker_audio] provides a more complete guide to using speakers. @cc.tparam {number...} audio A list of amplitudes. @cc.tparam [opt] number volume The volume to play this audio at. If not given, defaults to the previous volume given to #playAudio. @cc.since 1.100 @cc.usage Read an audio file, decode it using [cc.audio.dfpwm], and play it using the speaker. local dfpwm = require(\"cc.audio.dfpwm\") local speaker = peripheral.find(\"speaker\") local decoder = dfpwm.make_decoder() for chunk in io.lines(\"data/example.dfpwm\", 16 * 1024) do local buffer = decoder(chunk) while not speaker.playAudio(buffer) do os.pullEvent(\"speaker_audio_empty\") end end @cc.see cc.audio.dfpwm Provides utilities for decoding DFPWM audio files into a format which can be played by the speaker. @cc.see speaker_audio For a more complete introduction to the #playAudio function."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "speaker.stop()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Stop all audio being played by this speaker. This clears any audio that #playAudio had queued and stops the latest sound played by #playSound. @cc.since 1.100"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "module/pocket": {
-        "title": "pocket",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "Control the current pocket computer, adding or removing upgrades.",
-            "This API is only available on pocket computers. As such, you may use its presence to determine what kind of computer you are using:"
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "pocket.equipBack()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Search the player's inventory for another upgrade, replacing the existing one with that item if found. This inventory search starts from the player's currently selected slot, allowing you to prioritise upgrades. @cc.treturn boolean If an item was equipped. @cc.treturn string|nil The reason an item was not equipped."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "pocket.unequipBack()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Remove the pocket computer's current upgrade. @cc.treturn boolean If the upgrade was unequipped. @cc.treturn string|nil The reason an upgrade was not unequipped."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "module/turtle": {
-        "title": "turtle",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "Turtles are a robotic device, which can break and place blocks, attack mobs, and move about the world. They have an internal inventory of 16 slots, allowing them to store blocks they have broken or would like to place.",
-            "Movement",
-            "Turtles are capable of moving through the world. As turtles are blocks themselves, they are confined to Minecraft's grid, moving a single block at a time.",
-            "[turtle.forward] and [turtle.back] move the turtle in the direction it is facing, while [turtle.up] and [turtle.down] move it up and down (as one might expect!). In order to move left or right, you first need to turn the turtle using [turtle.turnLeft]/[turtle.turnRight] and then move forward or backwards.",
-            "> [!INFO] > The name \"turtle\" comes from [Turtle graphics], which originated from the Logo programming language. Here you'd > move a turtle with various commands like \"move 10\" and \"turn left\", much like ComputerCraft's turtles!",
-            "Moving a turtle (though not turning it) consumes *fuel*. If a turtle does not have any fuel, it won't move, and the movement functions will return [false]. If your turtle isn't going anywhere, the first thing to check is if you've fuelled your turtle.",
-            "> Handling errors > Many turtle functions can fail in various ways. For instance, a turtle cannot move forward if there's already a > block there. Instead of erroring, functions which can fail either return [true] if they succeed, or [false] and > some error message if they fail. > > Unexpected failures can often lead to strange behaviour. It's often a good idea to check the return values of these > functions, or wrap them in [assert] (for instance, use assert(turtle.forward()) rather than turtle.forward()), > so the program doesn't misbehave.",
-            "Turtle upgrades",
-            "While a normal turtle can move about the world and place blocks, its functionality is limited. Thankfully, turtles can be upgraded with upgrades. Turtles have two upgrade slots, one on the left and right sides. Upgrades can be equipped by crafting a turtle with the upgrade, or calling the [turtle.equipLeft]/[turtle.equipRight] functions.",
-            "By default, any diamond tool may be used as an upgrade (though more may be added with [datapacks]). The diamond pickaxe may be used to break blocks (with [turtle.dig]), while the sword can attack entities ([turtle.attack]). Other tools have more niche use-cases, for instance hoes can til dirt.",
-            "Some peripherals (namely speakers and Ender and Wireless modems) can also be equipped as upgrades. These are then accessible by accessing the \"left\" or \"right\" peripheral."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "turtle.forward()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Move the turtle forward one block. @cc.treturn boolean Whether the turtle could successfully move. @cc.treturn string|nil The reason the turtle could not move."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.back()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Move the turtle backwards one block. @cc.treturn boolean Whether the turtle could successfully move. @cc.treturn string|nil The reason the turtle could not move."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.up()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Move the turtle up one block. @cc.treturn boolean Whether the turtle could successfully move. @cc.treturn string|nil The reason the turtle could not move."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.down()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Move the turtle down one block. @cc.treturn boolean Whether the turtle could successfully move. @cc.treturn string|nil The reason the turtle could not move."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.turnLeft()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Rotate the turtle 90 degrees to the left. @cc.treturn boolean Whether the turtle could successfully turn. @cc.treturn string|nil The reason the turtle could not turn."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.turnRight()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Rotate the turtle 90 degrees to the right. @cc.treturn boolean Whether the turtle could successfully turn. @cc.treturn string|nil The reason the turtle could not turn."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.dig([side])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attempt to break the block in front of the turtle. This requires a turtle tool capable of breaking the block. Diamond pickaxes (mining turtles) can break any vanilla block breakable in survival mode, but other tools (such as axes) are more limited. @cc.treturn boolean Whether a block was broken. @cc.treturn string|nil The reason no block was broken. @cc.changed 1.6 Added optional side argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.digUp([side])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attempt to break the block above the turtle. See #dig for full details. @cc.treturn boolean Whether a block was broken. @cc.treturn string|nil The reason no block was broken. @cc.changed 1.6 Added optional side argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.digDown([side])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attempt to break the block below the turtle. See #dig for full details. @cc.treturn boolean Whether a block was broken. @cc.treturn string|nil The reason no block was broken. @cc.changed 1.6 Added optional side argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.place(...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Place a block or item into the world in front of the turtle. \"Placing\" an item allows it to interact with blocks and entities in front of the turtle. For instance, buckets can pick up and place down fluids, and wheat can be used to breed cows. However, you cannot use #place to perform arbitrary block interactions, such as clicking buttons or flipping levers. @cc.tparam [opt] string text When placing a sign, set its contents to this text. @cc.treturn boolean Whether the block could be placed. @cc.treturn string|nil The reason the block was not placed. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.placeUp(...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Place a block or item into the world above the turtle. @cc.tparam [opt] string text When placing a sign, set its contents to this text. @cc.treturn boolean Whether the block could be placed. @cc.treturn string|nil The reason the block was not placed. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.placeDown(...)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Place a block or item into the world below the turtle. @cc.tparam [opt] string text When placing a sign, set its contents to this text. @cc.treturn boolean Whether the block could be placed. @cc.treturn string|nil The reason the block was not placed. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.drop([count])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Drop the currently selected stack into the inventory in front of the turtle, or as an item into the world if there is no inventory. @cc.treturn boolean Whether items were dropped. @cc.treturn string|nil The reason the no items were dropped. @cc.since 1.31"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.dropUp([count])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Drop the currently selected stack into the inventory above the turtle, or as an item into the world if there is no inventory. @cc.treturn boolean Whether items were dropped. @cc.treturn string|nil The reason the no items were dropped. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.dropDown([count])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Drop the currently selected stack into the inventory below the turtle, or as an item into the world if there is no inventory. @cc.treturn boolean Whether items were dropped. @cc.treturn string|nil The reason the no items were dropped. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.select(slot)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Change the currently selected slot. The selected slot is determines what slot actions like #drop or #getItemCount act on. @cc.treturn true When the slot has been selected."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getItemCount([slot])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the number of items in the given slot."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getItemSpace([slot])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the remaining number of items which may be stored in this stack. For instance, if a slot contains 13 blocks of dirt, it has room for another 51."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.detect()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if there is a solid block in front of the turtle. In this case, solid refers to any non-air or liquid block. @cc.treturn boolean If there is a solid block in front."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.detectUp()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if there is a solid block above the turtle. In this case, solid refers to any non-air or liquid block. @cc.treturn boolean If there is a solid block above."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.detectDown()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if there is a solid block below the turtle. In this case, solid refers to any non-air or liquid block. @cc.treturn boolean If there is a solid block below."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.compare()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if the block in front of the turtle is equal to the item in the currently selected slot. @cc.treturn boolean If the block and item are equal. @cc.since 1.31"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.compareUp()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if the block above the turtle is equal to the item in the currently selected slot. @cc.treturn boolean If the block and item are equal. @cc.since 1.31"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.compareDown()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Check if the block below the turtle is equal to the item in the currently selected slot. @cc.treturn boolean If the block and item are equal. @cc.since 1.31"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.attack([side])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attack the entity in front of the turtle. @cc.treturn boolean Whether an entity was attacked. @cc.treturn string|nil The reason nothing was attacked. @cc.since 1.4 @cc.changed 1.6 Added optional side argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.attackUp([side])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attack the entity above the turtle. @cc.treturn boolean Whether an entity was attacked. @cc.treturn string|nil The reason nothing was attacked. @cc.since 1.4 @cc.changed 1.6 Added optional side argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.attackDown([side])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Attack the entity below the turtle. @cc.treturn boolean Whether an entity was attacked. @cc.treturn string|nil The reason nothing was attacked. @cc.since 1.4 @cc.changed 1.6 Added optional side argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.suck([count])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Suck an item from the inventory in front of the turtle, or from an item floating in the world. This will pull items into the first acceptable slot, starting at the #select currently selected one. @cc.treturn boolean Whether items were picked up. @cc.treturn string|nil The reason the no items were picked up. @cc.since 1.4 @cc.changed 1.6 Added an optional limit argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.suckUp([count])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Suck an item from the inventory above the turtle, or from an item floating in the world. @cc.treturn boolean Whether items were picked up. @cc.treturn string|nil The reason the no items were picked up. @cc.since 1.4 @cc.changed 1.6 Added an optional limit argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.suckDown([count])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Suck an item from the inventory below the turtle, or from an item floating in the world. @cc.treturn boolean Whether items were picked up. @cc.treturn string|nil The reason the no items were picked up. @cc.since 1.4 @cc.changed 1.6 Added an optional limit argument."
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getFuelLevel()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the maximum amount of fuel this turtle currently holds. @cc.treturn [1] number The current amount of fuel a turtle this turtle has. @cc.treturn [2] \"unlimited\" If turtles do not consume fuel when moving. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.refuel([countA])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Refuel this turtle. While most actions a turtle can perform (such as digging or placing blocks) are free, moving consumes fuel from the turtle's internal buffer. If a turtle has no fuel, it will not move. #refuel refuels the turtle, consuming fuel items (such as coal or lava buckets) from the currently selected slot and converting them into energy. This finishes once the turtle is fully refuelled or all items have been consumed. @cc.treturn [1] true If the turtle was refuelled. @cc.treturn [2] false If the turtle was not refuelled. @cc.treturn [2] string The reason the turtle was not refuelled. @cc.usage Refuel a turtle from the currently selected slot. local level = turtle.getFuelLevel() if level == \"unlimited\" then error(\"Turtle does not need fuel\", 0) end local ok, err = turtle.refuel() if ok then local new_level = turtle.getFuelLevel() print((\"Refuelled %d, current level is %d\"):format(new_level - level, new_level)) else printError(err) end @cc.usage Check if the current item is a valid fuel source. local is_fuel, reason = turtle.refuel(0) if not is_fuel then printError(reason) end @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.compareTo(slot)",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Compare the item in the currently selected slot to the item in another slot. @cc.treturn boolean If the two items are equal. @cc.since 1.4"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.transferTo(slotArg, [countArg])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Move an item from the selected slot to another one. @cc.treturn boolean If some items were successfully moved. @cc.since 1.45"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getSelectedSlot()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the currently selected slot. @cc.since 1.6"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getFuelLimit()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the maximum amount of fuel this turtle can hold. By default, normal turtles have a limit of 20,000 and advanced turtles of 100,000. @cc.treturn [1] number The maximum amount of fuel a turtle can hold. @cc.treturn [2] \"unlimited\" If turtles do not consume fuel when moving. @cc.since 1.6"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.equipLeft()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Equip (or unequip) an item on the left side of this turtle. This finds the item in the currently selected slot and attempts to equip it to the left side of the turtle. The previous upgrade is removed and placed into the turtle's inventory. If there is no item in the slot, the previous upgrade is removed, but no new one is equipped. @cc.treturn [1] true If the item was equipped. @cc.treturn [2] false If we could not equip the item. @cc.treturn [2] string The reason equipping this item failed. @cc.since 1.6"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.equipRight()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Equip (or unequip) an item on the right side of this turtle. This finds the item in the currently selected slot and attempts to equip it to the right side of the turtle. The previous upgrade is removed and placed into the turtle's inventory. If there is no item in the slot, the previous upgrade is removed, but no new one is equipped. @cc.treturn [1] true If the item was equipped. @cc.treturn [2] false If we could not equip the item. @cc.treturn [2] string The reason equipping this item failed. @cc.since 1.6"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getEquippedLeft()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the upgrade currently equipped on the left of the turtle. This returns information about the currently equipped item. @cc.since 1.116.0 @cc.see item_details"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getEquippedRight()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get the upgrade currently equipped on the right of the turtle. This returns information about the currently equipped item. @cc.since 1.116.0 @cc.see item_details"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.inspect()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get information about the block in front of the turtle. @cc.treturn boolean Whether there is a block in front of the turtle. @cc.treturn table|string Information about the block in front, or a message explaining that there is no block. @cc.since 1.64 @cc.changed 1.76 Added block state to return value. @cc.see block_details @cc.usage local has_block, data = turtle.inspect() if has_block then print(textutils.serialise(data)) -- { -- name = \"minecraft:oak_log\", -- state = { axis = \"x\" , -- tags = { [\"minecraft:logs\"] = true, ... }, -- } else print(\"No block in front of the turtle\") end}"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.inspectUp()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get information about the block above the turtle. @cc.treturn boolean Whether there is a block above the turtle. @cc.treturn table|string Information about the block above, or a message explaining that there is no block. @cc.since 1.64 @cc.see block_details"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.inspectDown()",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get information about the block below the turtle. @cc.treturn boolean Whether there is a block below the turtle. @cc.treturn table|string Information about the block below, or a message explaining that there is no block. @cc.since 1.64 @cc.see block_details"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            },
-            {
-                "signature": "turtle.getItemDetail([slot], [detailed])",
-                "signatureColor": "#FF4FC1FF",
-                "description": [
-                    "Get information about the items in the given slot. more information about the item at the cost of taking longer to run. @cc.treturn nil|table Information about the item in this slot, or nil if it is empty. @cc.since 1.64 @cc.changed 1.90.0 Added detailed parameter. @cc.usage Print the current slot, assuming it contains 13 dirt. print(textutils.serialise(turtle.getItemDetail())) -- => { -- name = \"minecraft:dirt\", -- count = 13, -- } @cc.see item_details"
-                ],
-                "descriptionColor": "#FFADB8CC"
-            }
-        ]
-    },
-    "peripheral/workbench": {
-        "title": "workbench",
-        "titleColor": "#FFE2E8F4",
-        "summary": [
-            "The workbench peripheral allows you to craft items within the turtle's inventory. @cc.module workbench @hidden @cc.see turtle.craft This uses the CraftingTablePeripheral peripheral to craft items."
-        ],
-        "summaryColor": "#FFADB8CC",
-        "entries": [
-            {
-                "signature": "workbench.craft([count])",
                 "signatureColor": "#FF4FC1FF"
             }
         ]

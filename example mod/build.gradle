@@ -33,10 +33,10 @@ neoForge {
 }
 
 dependencies {
-    // CC:Tweaked — full dep so we can compile against its API
     implementation "cc.tweaked:cc-tweaked-${project.minecraft_version}-forge:${project.cc_tweaked_version}"
 
-    // No CIDE compile dependency needed — integration uses reflection at runtime.
+    compileOnly "maven.modrinth:cide-cc:${project.cide_version}"
+    runtimeOnly "maven.modrinth:cide-cc:${project.cide_version}"
 }
 
 processResources {
