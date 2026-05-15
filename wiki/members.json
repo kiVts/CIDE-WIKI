@@ -9,18 +9,6 @@
         "toBlit",
         "fromBlit"
     ],
-    "commands": [
-        "__call",
-        "__tostring",
-        "__index",
-        "exec",
-        "execAsync",
-        "list",
-        "getBlockPosition",
-        "getBlockInfos",
-        "getBlockInfo",
-        "getEntities"
-    ],
     "disk": [
         "isPresent",
         "getLabel",
@@ -140,6 +128,13 @@
         "load",
         "save"
     ],
+    "term": [
+        "redirect",
+        "current",
+        "native",
+        "nativePaletteColour",
+        "nativePaletteColor"
+    ],
     "textutils": [
         "slowWrite",
         "slowPrint",
@@ -176,14 +171,29 @@
         "time",
         "day",
         "epoch",
-        "date"
+        "date",
+        "version",
+        "pullEventRaw",
+        "pullEvent",
+        "run",
+        "loadAPI",
+        "unloadAPI",
+        "sleep"
     ],
     "rs": [
         "getSides"
     ],
-    "term": [
-        "nativePaletteColour",
-        "nativePaletteColor"
+    "redstone": [
+        "getSides"
+    ],
+    "commands": [
+        "exec",
+        "execAsync",
+        "list",
+        "getBlockPosition",
+        "getBlockInfos",
+        "getBlockInfo",
+        "getEntities"
     ],
     "command": [
         "getCommand",
@@ -356,5 +366,14 @@
         "rshift",
         "lrotate",
         "rrotate"
+    ],
+    "_G": [
+        "sleep",
+        "write",
+        "print",
+        "printError",
+        "read",
+        "loadfile",
+        "dofile"
     ]
 }

@@ -145,56 +145,6 @@
             "indent": 0
         }
     ],
-    "module/commands": [
-        {
-            "text": "commands",
-            "color": -1906444,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Execute Minecraft commands and gather data from the results from a command computer. > [!NOTE] > This API is only available on Command computers. It is not accessible to normal > players. While one may use [commands.exec] directly to execute a command, the commands API also provides helper methods to execute every command. For instance, commands.say(\"Hi!\") is equivalent to commands.exec(\"say Hi!\"). [commands.async] provides a similar interface to execute asynchronous commands. commands.async.say(\"Hi!\") is equivalent to commands.execAsync(\"say Hi!\"). [mc]: https://minecraft.wiki/w/Commands commands.setblock(\"~\", \"~1\", \"~\", \"minecraft:stone\")",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "commands.__call(self, ...)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "commands.__tostring(self)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "commands.__index(self, key)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        }
-    ],
     "module/disk": [
         {
             "text": "disk",
@@ -455,6 +405,312 @@
             "color": -5392180,
             "hr": false,
             "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.list(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns a list of files in a directory. @cc.usage List all files under /rom/ local files = fs.list(\"/rom/\") for i = 1, #files do print(files[i]) end",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.combine(...)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Combines several parts of a path into one full path, adding separators as needed. @cc.tparam string path The first part of the path. For example, a parent directory path. @cc.tparam string ... Additional parts of the path to combine. @cc.changed 1.95.0 Now supports multiple arguments. @cc.usage Combine several file paths together fs.combine(\"/rom/programs\", \"../apis\", \"parallel.lua\") -- => rom/apis/parallel.lua",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.getName(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the file name portion of a path. @cc.since 1.2 @cc.usage Get the file name of rom/startup.lua fs.getName(\"rom/startup.lua\") -- => startup.lua",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.getDir(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the parent directory portion of a path. @cc.since 1.63 @cc.usage Get the directory name of rom/startup.lua fs.getDir(\"rom/startup.lua\") -- => rom",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.getSize(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the size of the specified file. @cc.since 1.3",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.exists(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns whether the specified path exists.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.isDir(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns whether the specified path is a directory.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.isReadOnly(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns whether a path is read-only.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.makeDir(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Creates a directory, and any missing parents, at the specified path.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.move(path, dest)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Moves a file or directory from one path to another. Any parent directories are created as needed.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.copy(path, dest)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Copies a file or directory to a new path. Any parent directories are created as needed.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.delete(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Deletes a file or directory. If the path points to a directory, all of the enclosed files and subdirectories are also deleted.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.open(path, mode)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Opens a file for reading or writing at a path. The mode string can be any of the following: \"r\": Read mode. \"w\": Write mode. \"a\": Append mode. \"r+\": Update mode (allows reading and writing), all data is preserved. \"w+\": Update mode, all data is erased. The mode may also have a \"b\" at the end, which opens the file in \"binary mode\". This changes ReadHandle#read(Optional) and WriteHandle#write(IArguments) to read/write single bytes as numbers rather than strings. @cc.treturn [1] table A file handle object for the file. @cc.treturn [2] nil If the file does not exist, or cannot be opened. @cc.treturn string|nil A message explaining why the file cannot be opened. @cc.usage Read the contents of a file. local file = fs.open(\"/rom/help/intro.txt\", \"r\") local contents = file.readAll() file.close() print(contents) @cc.usage Open a file and read all lines into a table. [io.lines] offers an alternative way to do this. local file = fs.open(\"/rom/motd.txt\", \"r\") local lines = { while true do local line = file.readLine() -- If line is nil then we've reached the end of the file and should stop if not line then break end lines[#lines + 1] = line end file.close() print(lines[math.random(#lines)]) -- Pick a random line and print it. } @cc.usage Open a file and write some text to it. You can run edit out.txt to see the written text. local file = fs.open(\"out.txt\", \"w\") file.write(\"Just testing some code\") file.close() -- Remember to call close, otherwise changes may not be written! @cc.changed 1.109.0 Add support for update modes (r+ and w+). @cc.changed 1.109.0 Opening a file in non-binary mode now uses the raw bytes of the file rather than encoding to UTF-8.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.getDrive(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the name of the mount that the specified path is located on. @cc.treturn string|nil The name of the drive that the file is on; e.g. hdd for local files, or rom for ROM files. @cc.usage Print the drives of a couple of mounts: print(\"/: \" .. fs.getDrive(\"/\")) print(\"/rom/: \" .. fs.getDrive(\"rom\"))",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.getFreeSpace(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the amount of free space available on the drive the path is located on. @cc.treturn number|\"unlimited\" The amount of free space available, in bytes, or \"unlimited\". @cc.since 1.4",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.getCapacity(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the capacity of the drive the path is located on. @cc.treturn number|nil This drive's capacity. This will be nil for \"read-only\" drives, such as the ROM or treasure disks. @cc.since 1.87.0",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "fs.attributes(path)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Get attributes about a specific file or folder. The returned attributes table contains information about the size of the file, whether it is a directory, when it was created and last modified, and whether it is read only. The creation and modification times are given as the number of milliseconds since the UNIX epoch. This may be given to OSAPI#date in order to convert it to more usable form. @cc.treturn { size = number, isDir = boolean, isReadOnly = boolean, created = number, modified = number } The resulting attributes. @cc.since 1.87.0 @cc.changed 1.91.0 Renamed modification field to modified. @cc.changed 1.95.2 Added isReadOnly to attributes.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
         }
     ],
     "module/gps": [
@@ -692,6 +948,42 @@
         },
         {
             "text": "http.websocket(url, headers)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "http.request(...)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "http.checkURL(address)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "http.websocket(...)",
             "color": -11550209,
             "hr": false,
             "indent": 0
@@ -1263,6 +1555,66 @@
             "color": -11550209,
             "hr": false,
             "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "peripheral.isPresent(sideName)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "peripheral.getType(sideName)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "peripheral.hasType(sideName, type)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "peripheral.getMethods(sideName)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "peripheral.call(...)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
         }
     ],
     "module/rednet": [
@@ -1707,6 +2059,104 @@
             "indent": 1
         }
     ],
+    "module/term": [
+        {
+            "text": "term",
+            "color": -1906444,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "term.redirect(target)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Redirects terminal output to a monitor, a [`window`], or any other custom terminal object. Once the redirect is performed, any calls to a \"term\" function - or to a function that makes use of a term function, as [`print`] - will instead operate with the new terminal object. A \"terminal object\" is simply a table that contains functions with the same names - and general features - as those found in the term table. For example, a wrapped monitor is suitable. The redirect can be undone by pointing back to the previous terminal object (which this function returns whenever you switch). [`term.current`]. Redirect to a monitor on the right of the computer. term.redirect(peripheral.wrap(\"right\"))",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "term.current",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Returns the current terminal object of the computer. Create a new [`window`] which draws to the current redirect target. window.create(term.current(), 1, 1, 10, 10)",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "term.native",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Get the native terminal object of the current computer. It is recommended you do not use this function unless you absolutely have to. In a multitasked environment, [`term.native`] will _not_ be the current terminal object, and so drawing may interfere with other programs.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "term.nativePaletteColour(colour)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Get the default palette value for a colour. @cc.treturn number The red channel, will be between 0 and 1. @cc.treturn number The green channel, will be between 0 and 1. @cc.treturn number The blue channel, will be between 0 and 1. @cc.since 1.81.0",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "term.nativePaletteColor(colour)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Get the default palette value for a colour. @cc.treturn number The red channel, will be between 0 and 1. @cc.treturn number The green channel, will be between 0 and 1. @cc.treturn number The blue channel, will be between 0 and 1. @cc.since 1.81.0",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        }
+    ],
     "module/textutils": [
         {
             "text": "textutils",
@@ -1947,467 +2397,7 @@
             "indent": 0
         }
     ],
-    "peripheral/fs": [
-        {
-            "text": "fs",
-            "color": -1906444,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Interact with the computer's files and filesystem, allowing you to manipulate files, directories and paths. This includes:",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "\u2022 **Reading and writing files:** Call open to obtain a file \"handle\", which can be used to read from or write to a file.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "\u2022 **Path manipulation:** combine, getName and getDir allow you to manipulate file paths, joining them together or extracting components.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "\u2022 **Querying paths:** For instance, checking if a file exists, or whether it's a directory. See getSize, exists, isDir, isReadOnly and attributes.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "\u2022 **File and directory manipulation:** For instance, moving or copying files. See makeDir, move, copy and delete.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "> [!NOTE] > All functions in the API work on absolute paths, and do not take the current directory into account. > You can use [shell.resolve] to convert a relative path into an absolute one.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Mounts",
-            "color": -4928257,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "While a computer can only have one hard drive and filesystem, other filesystems may be \"mounted\" inside it. For instance, the computercraft mounts its disk's contents at \"disk/\", \"disk1/\", etc...",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "You can see which mount a path belongs to with the getDrive function. This returns \"hdd\" for the computer's main filesystem (\"/\"), \"rom\" for the rom (\"rom/\").",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Most filesystems have a limited capacity, operations which would cause that capacity to be reached (such as writing an incredibly large file) will fail. You can see a mount's capacity with getCapacity and the remaining space with getFreeSpace. @cc.module fs",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.list(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns a list of files in a directory. @cc.usage List all files under /rom/ local files = fs.list(\"/rom/\") for i = 1, #files do print(files[i]) end",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.combine(...)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Combines several parts of a path into one full path, adding separators as needed. @cc.tparam string path The first part of the path. For example, a parent directory path. @cc.tparam string ... Additional parts of the path to combine. @cc.changed 1.95.0 Now supports multiple arguments. @cc.usage Combine several file paths together fs.combine(\"/rom/programs\", \"../apis\", \"parallel.lua\") -- => rom/apis/parallel.lua",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.getName(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns the file name portion of a path. @cc.since 1.2 @cc.usage Get the file name of rom/startup.lua fs.getName(\"rom/startup.lua\") -- => startup.lua",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.getDir(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns the parent directory portion of a path. @cc.since 1.63 @cc.usage Get the directory name of rom/startup.lua fs.getDir(\"rom/startup.lua\") -- => rom",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.getSize(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns the size of the specified file. @cc.since 1.3",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.exists(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns whether the specified path exists.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.isDir(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns whether the specified path is a directory.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.isReadOnly(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns whether a path is read-only.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.makeDir(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Creates a directory, and any missing parents, at the specified path.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.move(path, dest)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Moves a file or directory from one path to another. Any parent directories are created as needed.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.copy(path, dest)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Copies a file or directory to a new path. Any parent directories are created as needed.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.delete(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Deletes a file or directory. If the path points to a directory, all of the enclosed files and subdirectories are also deleted.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.open(path, mode)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Opens a file for reading or writing at a path. The mode string can be any of the following: \"r\": Read mode. \"w\": Write mode. \"a\": Append mode. \"r+\": Update mode (allows reading and writing), all data is preserved. \"w+\": Update mode, all data is erased. The mode may also have a \"b\" at the end, which opens the file in \"binary mode\". This changes ReadHandle#read(Optional) and WriteHandle#write(IArguments) to read/write single bytes as numbers rather than strings. @cc.treturn [1] table A file handle object for the file. @cc.treturn [2] nil If the file does not exist, or cannot be opened. @cc.treturn string|nil A message explaining why the file cannot be opened. @cc.usage Read the contents of a file. local file = fs.open(\"/rom/help/intro.txt\", \"r\") local contents = file.readAll() file.close() print(contents) @cc.usage Open a file and read all lines into a table. [io.lines] offers an alternative way to do this. local file = fs.open(\"/rom/motd.txt\", \"r\") local lines = { while true do local line = file.readLine() -- If line is nil then we've reached the end of the file and should stop if not line then break end lines[#lines + 1] = line end file.close() print(lines[math.random(#lines)]) -- Pick a random line and print it. } @cc.usage Open a file and write some text to it. You can run edit out.txt to see the written text. local file = fs.open(\"out.txt\", \"w\") file.write(\"Just testing some code\") file.close() -- Remember to call close, otherwise changes may not be written! @cc.changed 1.109.0 Add support for update modes (r+ and w+). @cc.changed 1.109.0 Opening a file in non-binary mode now uses the raw bytes of the file rather than encoding to UTF-8.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.getDrive(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns the name of the mount that the specified path is located on. @cc.treturn string|nil The name of the drive that the file is on; e.g. hdd for local files, or rom for ROM files. @cc.usage Print the drives of a couple of mounts: print(\"/: \" .. fs.getDrive(\"/\")) print(\"/rom/: \" .. fs.getDrive(\"rom\"))",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.getFreeSpace(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns the amount of free space available on the drive the path is located on. @cc.treturn number|\"unlimited\" The amount of free space available, in bytes, or \"unlimited\". @cc.since 1.4",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.getCapacity(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Returns the capacity of the drive the path is located on. @cc.treturn number|nil This drive's capacity. This will be nil for \"read-only\" drives, such as the ROM or treasure disks. @cc.since 1.87.0",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "fs.attributes(path)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Get attributes about a specific file or folder. The returned attributes table contains information about the size of the file, whether it is a directory, when it was created and last modified, and whether it is read only. The creation and modification times are given as the number of milliseconds since the UNIX epoch. This may be given to OSAPI#date in order to convert it to more usable form. @cc.treturn { size = number, isDir = boolean, isReadOnly = boolean, created = number, modified = number } The resulting attributes. @cc.since 1.87.0 @cc.changed 1.91.0 Renamed modification field to modified. @cc.changed 1.95.2 Added isReadOnly to attributes.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        }
-    ],
-    "peripheral/http": [
-        {
-            "text": "http",
-            "color": -1906444,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Placeholder description, please ignore. @cc.module http @hidden",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "http.request(...)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "http.checkURL(address)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "http.websocket(...)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        }
-    ],
-    "peripheral/os": [
+    "module/os": [
         {
             "text": "os",
             "color": -1906444,
@@ -2725,20 +2715,24 @@
             "color": -5392180,
             "hr": false,
             "indent": 1
-        }
-    ],
-    "peripheral/peripheral": [
+        },
         {
-            "text": "peripheral",
-            "color": -1906444,
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "os.version()",
+            "color": -11550209,
             "hr": false,
             "indent": 0
         },
         {
-            "text": "CC's \"native\" peripheral API. This is wrapped within CraftOS to provide a version which works with modems. @cc.module peripheral @hidden",
+            "text": "Returns the current ComputerCraft version.",
             "color": -5392180,
             "hr": false,
-            "indent": 0
+            "indent": 1
         },
         {
             "text": "",
@@ -2747,10 +2741,16 @@
             "indent": 0
         },
         {
-            "text": "peripheral.isPresent(sideName)",
+            "text": "os.pullEventRaw(sFilter)",
             "color": -11550209,
             "hr": false,
             "indent": 0
+        },
+        {
+            "text": "Waits for an event without allowing terminate events to abort the program.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
         },
         {
             "text": "",
@@ -2759,10 +2759,16 @@
             "indent": 0
         },
         {
-            "text": "peripheral.getType(sideName)",
+            "text": "os.pullEvent(sFilter)",
             "color": -11550209,
             "hr": false,
             "indent": 0
+        },
+        {
+            "text": "Waits for an event.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
         },
         {
             "text": "",
@@ -2771,10 +2777,16 @@
             "indent": 0
         },
         {
-            "text": "peripheral.hasType(sideName, type)",
+            "text": "os.run(tEnv, sPath, ...)",
             "color": -11550209,
             "hr": false,
             "indent": 0
+        },
+        {
+            "text": "Runs a program with a custom environment.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
         },
         {
             "text": "",
@@ -2783,10 +2795,16 @@
             "indent": 0
         },
         {
-            "text": "peripheral.getMethods(sideName)",
+            "text": "os.loadAPI(sPath)",
             "color": -11550209,
             "hr": false,
             "indent": 0
+        },
+        {
+            "text": "Loads a Lua API from a file into the global environment.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
         },
         {
             "text": "",
@@ -2795,13 +2813,37 @@
             "indent": 0
         },
         {
-            "text": "peripheral.call(...)",
+            "text": "os.unloadAPI(sName)",
             "color": -11550209,
             "hr": false,
             "indent": 0
+        },
+        {
+            "text": "Unloads a previously loaded API.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "os.sleep(nTime)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Pauses execution for the given number of seconds.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
         }
     ],
-    "peripheral/rs": [
+    "module/rs": [
         {
             "text": "rs",
             "color": -1906444,
@@ -2821,7 +2863,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Binary input/output (setOutput/getInput): These simply check if a redstone wire has any input or",
+            "text": "\u00e2\u20ac\u00a2 Binary input/output (setOutput/getInput): These simply check if a redstone wire has any input or",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -2839,7 +2881,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Analogue input/output (setAnalogOutput/getAnalogInput): These work with the actual signal",
+            "text": "\u00e2\u20ac\u00a2 Analogue input/output (setAnalogOutput/getAnalogInput): These work with the actual signal",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -2857,7 +2899,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Bundled cables (setBundledOutput/getBundledInput): These interact with \"bundled\" cables, such",
+            "text": "\u00e2\u20ac\u00a2 Bundled cables (setBundledOutput/getBundledInput): These interact with \"bundled\" cables, such",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -2917,87 +2959,7 @@
             "indent": 1
         }
     ],
-    "peripheral/term": [
-        {
-            "text": "term",
-            "color": -1906444,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Interact with a computer's terminal or monitors, writing text and drawing ASCII graphics. Writing to the terminal The simplest operation one can perform on a terminal is displaying (or writing) some text. This can be performed with the [term.write] method.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "When you write text, this advances the cursor, so the next call to [term.write] will write text immediately after the previous one.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "[term.getCursorPos] and [term.setCursorPos] can be used to manually change the cursor's position.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "[term.write] is a relatively basic and low-level function, and does not handle more advanced features such as line breaks or word wrapping. If you just want to display text to the screen, you probably want to use [print] or [write] instead. Colours So far we've been writing text in black and white. However, advanced computers are also capable of displaying text in a variety of colours, with the [term.setTextColour] and [term.setBackgroundColour] functions.",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "These functions accept any of the constants from the [colors] API. Combinations of colours may be accepted, but will only display a single colour (typically following the behaviour of [colors.toBlit]).",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "The [paintutils] API provides several helpful functions for displaying graphics using [term.setBackgroundColour]. @cc.module term",
-            "color": -5392180,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "term.nativePaletteColour(colour)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Get the default palette value for a colour. @cc.treturn number The red channel, will be between 0 and 1. @cc.treturn number The green channel, will be between 0 and 1. @cc.treturn number The blue channel, will be between 0 and 1. @cc.since 1.81.0",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        },
-        {
-            "text": "",
-            "color": 0,
-            "hr": true,
-            "indent": 0
-        },
-        {
-            "text": "term.nativePaletteColor(colour)",
-            "color": -11550209,
-            "hr": false,
-            "indent": 0
-        },
-        {
-            "text": "Get the default palette value for a colour. @cc.treturn number The red channel, will be between 0 and 1. @cc.treturn number The green channel, will be between 0 and 1. @cc.treturn number The blue channel, will be between 0 and 1. @cc.since 1.81.0",
-            "color": -5392180,
-            "hr": false,
-            "indent": 1
-        }
-    ],
-    "peripheral/commands": [
+    "module/commands": [
         {
             "text": "commands",
             "color": -1906444,
@@ -3491,7 +3453,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Sending messages is done with the transmit message.",
+            "text": "\u00e2\u20ac\u00a2 Sending messages is done with the transmit message.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3503,7 +3465,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Receiving messages is done by listening to the [modem_message] event.",
+            "text": "\u00e2\u20ac\u00a2 Receiving messages is done by listening to the [modem_message] event.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3533,7 +3495,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Wireless modems: Wireless modems can send messages to any other wireless modem. They can be placed next to a computer, or equipped as a pocket computer or turtle upgrade.  Wireless modems have a limited range, only sending messages to modems within 64 blocks. This range increases linearly once the modem is above y=96, to a maximum of 384 at world height.",
+            "text": "\u00e2\u20ac\u00a2 Wireless modems: Wireless modems can send messages to any other wireless modem. They can be placed next to a computer, or equipped as a pocket computer or turtle upgrade.  Wireless modems have a limited range, only sending messages to modems within 64 blocks. This range increases linearly once the modem is above y=96, to a maximum of 384 at world height.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3545,7 +3507,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Ender modems: These are upgraded versions of normal wireless modems. They do not have a distance limit, and can send messages between dimensions.",
+            "text": "\u00e2\u20ac\u00a2 Ender modems: These are upgraded versions of normal wireless modems. They do not have a distance limit, and can send messages between dimensions.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3557,7 +3519,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 Wired modems: These send messages to other any other wired modems connected to the same network (using Networking Cable). They also can be used to attach additional peripherals to a computer.",
+            "text": "\u00e2\u20ac\u00a2 Wired modems: These send messages to other any other wired modems connected to the same network (using Networking Cable). They also can be used to attach additional peripherals to a computer.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3941,7 +3903,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 playNote allows you to play noteblock note.",
+            "text": "\u00e2\u20ac\u00a2 playNote allows you to play noteblock note.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3953,7 +3915,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 playSound plays any Minecraft sound, such as block sounds or mob noises.",
+            "text": "\u00e2\u20ac\u00a2 playSound plays any Minecraft sound, such as block sounds or mob noises.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -3965,7 +3927,7 @@
             "indent": 0
         },
         {
-            "text": "\u2022 playAudio can play arbitrary audio.",
+            "text": "\u00e2\u20ac\u00a2 playAudio can play arbitrary audio.",
             "color": -5392180,
             "hr": false,
             "indent": 1
@@ -4043,7 +4005,7 @@
             "indent": 1
         }
     ],
-    "peripheral/pocket": [
+    "module/pocket": [
         {
             "text": "pocket",
             "color": -1906444,
@@ -4099,7 +4061,7 @@
             "indent": 1
         }
     ],
-    "peripheral/turtle": [
+    "module/turtle": [
         {
             "text": "turtle",
             "color": -1906444,
@@ -6178,6 +6140,140 @@
         },
         {
             "text": "Returns n with width bits replaced by v starting at field.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        }
+    ],
+    "module/_G": [
+        {
+            "text": "_G",
+            "color": -1906444,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "sleep(nTime)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Pauses execution for the given number of seconds.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "write(sText)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Writes text to the terminal without appending a newline.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "print(...)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Writes values to the terminal followed by a newline.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "printError(...)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Prints values as an error message.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "read(sReplaceChar, tHistory, fnComplete, sDefault)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Reads a line of user input from the terminal.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "loadfile(filename, mode, env)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Loads a Lua file as a function without running it.",
+            "color": -5392180,
+            "hr": false,
+            "indent": 1
+        },
+        {
+            "text": "",
+            "color": 0,
+            "hr": true,
+            "indent": 0
+        },
+        {
+            "text": "dofile(sFile)",
+            "color": -11550209,
+            "hr": false,
+            "indent": 0
+        },
+        {
+            "text": "Runs a Lua file and returns its results.",
             "color": -5392180,
             "hr": false,
             "indent": 1
