@@ -6,7 +6,7 @@ license = "MIT"
     modId = "pcinfo"
     version = "${version}"
     displayName = "PC Info"
-    description = "Adds a pcinfo Lua API to CC:Tweaked computers. Integrates with CIDE for autocomplete and wiki support."
+    description = "Adds a small pcinfo Lua API for CC:Tweaked computers."
 
 [[dependencies.pcinfo]]
     modId = "neoforge"
@@ -26,12 +26,5 @@ license = "MIT"
     modId = "computercraft"
     type = "required"
     versionRange = "[1.114.2,)"
-    ordering = "AFTER"
-    side = "BOTH"
-
-[[dependencies.pcinfo]]
-    modId = "cide"
-    type = "optional"
-    versionRange = "[0.5.2,)"
     ordering = "AFTER"
     side = "BOTH"

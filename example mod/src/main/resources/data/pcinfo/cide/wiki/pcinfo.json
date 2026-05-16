@@ -1,0 +1,11 @@
+{
+    "kind": "module",
+    "aliases": [
+        "pc"
+    ],
+    "members": [
+        "getId",
+        "getTime",
+        "getFacing"
+    ]
+}

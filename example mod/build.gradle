@@ -34,9 +34,6 @@ neoForge {
 
 dependencies {
     implementation "cc.tweaked:cc-tweaked-${project.minecraft_version}-forge:${project.cc_tweaked_version}"
-
-    compileOnly "maven.modrinth:cide-cc:${project.cide_version}"
-    runtimeOnly "maven.modrinth:cide-cc:${project.cide_version}"
 }
 
 processResources {

@@ -2,7 +2,6 @@ package dev.example.pcinfo;
 
 import dan200.computercraft.api.ComputerCraftAPI;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -16,9 +15,5 @@ public class PcInfoMod {
 
     private void setup(FMLCommonSetupEvent event) {
         ComputerCraftAPI.registerAPIFactory(PcInfoAPI::new);
-
-        if (ModList.get().isLoaded("cide")) {
-            PcInfoCideCompat.register();
-        }
     }
 }
